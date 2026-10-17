@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OrderCafe.Models.Category>
+
+<div class="list-group">
+    <!-- Link chọn tất cả thể loại (hiển thị toàn bộ sách) -->
+    @Html.ActionLink("Tất cả thể loại", "Index", "Product", null, new { @class = "list-group-item" })
+
+    @foreach (var item in Model)
+    {
+        @Html.ActionLink(item.CategoryName, "Index", "Product", new {maTL = item.CategoryId}, new { @class = "list-group-item"})
+        <!-- Hiển thị số lượng sách mỗi thể loại bằng badge -->
+        <span class="badge">@item.Products.Count</span>
+    }
+</div>

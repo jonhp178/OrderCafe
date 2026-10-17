@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.2\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.2\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,9 +129,47 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminUser.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelOrderCoffeeDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOrderCoffeeDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelOrderCoffeeDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelOrderCoffeeDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOrderCoffeeDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderPro.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>ModelOrderCoffeeDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -147,12 +194,63 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\GiaoDien.css" />
+    <Content Include="Content\Images\ảnh\coffee %281%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %2810%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %282%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %283%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %284%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %285%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %286%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %287%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %288%29.jpg" />
+    <Content Include="Content\Images\ảnh\coffee %289%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %281%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %2810%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %2811%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %2812%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %2813%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %2814%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %282%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %283%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %284%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %285%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %286%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %287%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %288%29.jpg" />
+    <Content Include="Content\Images\ảnh\fruit juice %289%29.jpg" />
+    <Content Include="Content\Images\ảnh\sinhto %281%29.jpg" />
+    <Content Include="Content\Images\ảnh\sinhto %282%29.jpg" />
+    <Content Include="Content\Images\ảnh\sinhto %283%29.jpg" />
+    <Content Include="Content\Images\ảnh\sinhto %284%29.jpg" />
+    <Content Include="Content\Images\ảnh\sinhto %285%29.jpg" />
+    <Content Include="Content\Images\ảnh\sinhto %286%29.jpg" />
+    <Content Include="Content\Images\ảnh\trasua %281%29.jpg" />
+    <Content Include="Content\Images\ảnh\trasua %282%29.jpg" />
+    <Content Include="Content\Images\ảnh\trasua %283%29.jpg" />
+    <Content Include="Content\Images\ảnh\trasua %284%29.jpg" />
+    <Content Include="Models\ModelOrderCoffeeDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOrderCoffeeDB.edmx</DependentUpon>
+      <LastGenOutput>ModelOrderCoffeeDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelOrderCoffeeDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOrderCoffeeDB.edmx</DependentUpon>
+      <LastGenOutput>ModelOrderCoffeeDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ModelOrderCoffeeDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelOrderCoffeeDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelOrderCoffeeDB.edmx.diagram">
+      <DependentUpon>ModelOrderCoffeeDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -181,10 +279,14 @@
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\Shared\GiaoDien.cshtml" />
     <Content Include="Views\Home\GiaoDien.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\CategoryPd.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\_ProductItem.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -212,6 +314,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -252,5 +357,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.2\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.2\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.2\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.2\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.5.2\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.2\build\EntityFramework.targets')" />
 </Project>

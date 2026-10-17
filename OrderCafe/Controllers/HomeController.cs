@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderCafe.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace OrderCafe.Controllers
 {
     public class HomeController : Controller
     {
+
+        
         public ActionResult Index()
         {
             return View("GiaoDien");
@@ -17,6 +20,14 @@ namespace OrderCafe.Controllers
         {
             return View();
         }
+
+        //[ChildActionOnly]
+        //public ActionResult Menu() 
+        //{
+            
+        //    return View(Product);
+        //}
+
 
         public ActionResult About()
         {

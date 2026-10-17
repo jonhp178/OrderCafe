@@ -1,0 +1,25 @@
+﻿@model IEnumerable<OrderCafe.Models.Product>
+
+@*@section banner {
+    <div class="container">
+        <div class="bg-light py-3 mb-3 text-center rounded">
+            <h2 class="m-0">Chào mừng đến HẠT Coffee</h2>
+        </div>
+    </div>
+}*@
+
+<h2 class="mb-3">@ViewBag.Title</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">Chưa có thể loại này</div>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_ProductItem", item)
+        }
+    </div>
+}
