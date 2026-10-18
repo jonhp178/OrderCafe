@@ -1,0 +1,38 @@
+﻿body {
+    margin: 0;
+}
+
+#div-top {
+    height: 50px;
+    background-color: aquamarine;
+}
+
+#div-main {
+    display: flex;
+    flex-direction: row;
+}
+
+#div-left {
+    width: 25%;
+    height: auto;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+#div-left h3 {
+    text-align: center;
+}
+
+#div-right{
+    width: 75%;
+    background-color: antiquewhite;
+}
+
+#div-footer {
+    height: 50px;
+    background-color: burlywood;
+    bottom: 0px;
+    text-align: center;
+    left: 50%;
+    padding-top: 25px;
+}

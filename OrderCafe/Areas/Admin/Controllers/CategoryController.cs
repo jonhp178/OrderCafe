@@ -14,7 +14,8 @@ namespace OrderCafe.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult Index()
         {
-            return View();
+            var category = db.Categories.ToList();
+            return View(category);
         }
 
         public ActionResult Edit(int id)

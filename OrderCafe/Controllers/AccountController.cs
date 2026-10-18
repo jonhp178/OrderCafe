@@ -27,7 +27,7 @@ namespace OrderCafe.Controllers
                 Session["Email"] = checkAd.Email;
                 Session["role"] = checkAd.Role; // Hoặc gán cứng là "Admin"
 
-                return RedirectToAction("Index", "Admin"); // Chuyển đến trang quản lý của Admin
+                return RedirectToAction("Index", "Category", new { area = "Admin" }); // Chuyển đến trang quản lý của Admin
             }
 
             // 2. Nếu không phải Admin, kiểm tra tiếp trong bảng Customers
