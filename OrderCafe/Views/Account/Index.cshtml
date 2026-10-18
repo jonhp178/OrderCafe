@@ -1,27 +1,45 @@
-﻿
+﻿@model OrderCafe.Models.Customer
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Account/_ViewRegister.cshtml";
+    ViewBag.Title = "Đăng ký";
+    Layout = null;
 }
 
+<h2>Đăng Nhập tài khoản</h2>
 
-@*<div class="container" style="text-align: center;">
-    <div class="login-container">
-        <form>
-            <h2>đăng nhập</h2>
-            <div>
-                <label>nhập tên người dùng</label>
-                <input type="text" name="UserNmae" />
-            </div>
-            <div>
-                <label>nhập mật khẩu</label>
-                <input type="password" name="UserPassword" />
-            </div>
+@using (Html.BeginForm("Authen", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <button type="submit" class="login">
-                login
-            </button>
-        </form>     
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.FullName)
+        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
     </div>
-</div>*@
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = 10 })
+        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.PasswordHash)
+        @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>*@
 
+    <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+    @Html.ActionLink("chưa có tài khoản? Đăng Kí", "Register", "Account", null, new { @class = "btn btn-link" })
+}
+
+@section Scripts { @Scripts.Render("~/bundles/jqueryval") }

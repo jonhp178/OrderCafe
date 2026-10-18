@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<link rel="stylesheet" hr/>
+@*<h2>@Session["FullName"].ToString()</h2>*@
+@if (TempData["ErrorMsg"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMsg"]</div>
+}
+

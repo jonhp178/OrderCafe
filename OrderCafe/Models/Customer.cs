@@ -20,24 +20,29 @@ namespace OrderCafe.Models
         {
             this.OrderProes = new HashSet<OrderPro>();
         }
-
-        [Required]
+        
         public int UserId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "vui long nhap day du ho ten")]
         public string FullName { get; set; }
-        [Required]
+
+        [RegularExpression(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$")]
+        [Required(ErrorMessage = "vui long nhap email")]
         public string Email { get; set; }
-        [Required]
+
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
+        [Required(ErrorMessage = "vui long nhap mat khau")]
         public string PasswordHash { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "vui long nhap sdt")]
         public string Phone { get; set; }
-        [Required]
         public bool IsActive { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public string CustomerCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderPro> OrderProes { get; set; }
+
+        public string LoginErrorMess { get; set; }
     }
 }

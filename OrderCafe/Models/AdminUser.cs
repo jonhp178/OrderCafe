@@ -28,6 +28,7 @@ namespace OrderCafe.Models
         public string Role { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedAt { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderPro> OrderProes { get; set; }
