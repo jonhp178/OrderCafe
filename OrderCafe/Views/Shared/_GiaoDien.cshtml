@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title - Hạt Coffee</title>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
-    <link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />
+    <link rel="stylesheet" href="~/Content/GiaoDien.css" />
 </head>
 @*@RenderSection("banner", required: false)*@
 <body>
     <header class="top">
         <div class="wrap bar">
-            <a class="logo" href="@Url.Action("Index", "Home")">HẠT<small>COFFEE</small></a>
+            <a class="logo" href="@Url.Action("TrangChu", "Home")">HẠT<small>COFFEE</small></a>
             <nav aria-label="Điều hướng chính">
-                <a href="@Url.Action("Index", "Home")#trangchu">Trang chủ</a>
+                <a href="@Url.Action("GiaoDien", "Home")">Trang chủ</a>
                 <a href="@Url.Action("Index", "Product")">Menu</a>
                 @*<span aria-disabled="true" title="Menu đang được cập nhật">Menu (đang cập nhật)</span>*@
                 <span aria-disabled="true" title="Ưu đãi đang được cập nhật">Ưu đãi (đang cập nhật)</span>
-                <a href="@Url.Action("Index", "Home")#thongtin">Thông tin</a>
+                <a href="@Url.Action("Index", "Home")">Thông tin</a>
                 @*<a href="@Url.Action("Register", "Account")">Đăn nhập</a>*@
                 @if (Session["FullName"] != null)
                 {
@@ -56,6 +56,8 @@
     @*<main>
             @RenderBody()
         </main>*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

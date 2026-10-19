@@ -13,7 +13,7 @@ namespace OrderCafe.Controllers
         
         public ActionResult GiaoDien()
         {
-            return View();
+            return View("GiaoDien");
         }
 
         public ActionResult DangNhap()
@@ -21,26 +21,9 @@ namespace OrderCafe.Controllers
             return View();
         }
 
-        //[ChildActionOnly]
-        //public ActionResult Menu() 
-        //{
-            
-        //    return View(Product);
-        //}
+        
 
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

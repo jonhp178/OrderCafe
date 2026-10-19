@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\ContentAd\mystyle.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -193,45 +195,45 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\cape %2810%29.jpg" />
+    <Content Include="Content\Images\cape %285%29.jpg" />
+    <Content Include="Content\Images\cape %286%29.jpg" />
+    <Content Include="Content\Images\cape %287%29.jpg" />
+    <Content Include="Content\Images\cape %288%29.jpg" />
+    <Content Include="Content\Images\cape %289%29.jpg" />
+    <Content Include="Content\Images\cape%281%29.jpg" />
+    <Content Include="Content\Images\cape%282%29.jpg" />
+    <Content Include="Content\Images\cape%283%29.jpg" />
+    <Content Include="Content\Images\cape%284%29.jpg" />
+    <Content Include="Content\Images\fruit juice %281%29.jpg" />
+    <Content Include="Content\Images\fruit juice %2810%29.jpg" />
+    <Content Include="Content\Images\fruit juice %2811%29.jpg" />
+    <Content Include="Content\Images\fruit juice %2812%29.jpg" />
+    <Content Include="Content\Images\fruit juice %2813%29.jpg" />
+    <Content Include="Content\Images\fruit juice %2814%29.jpg" />
+    <Content Include="Content\Images\fruit juice %282%29.jpg" />
+    <Content Include="Content\Images\fruit juice %283%29.jpg" />
+    <Content Include="Content\Images\fruit juice %284%29.jpg" />
+    <Content Include="Content\Images\fruit juice %285%29.jpg" />
+    <Content Include="Content\Images\fruit juice %286%29.jpg" />
+    <Content Include="Content\Images\fruit juice %287%29.jpg" />
+    <Content Include="Content\Images\fruit juice %288%29.jpg" />
+    <Content Include="Content\Images\fruit juice %289%29.jpg" />
+    <Content Include="Content\Images\sinhto %281%29.jpg" />
+    <Content Include="Content\Images\sinhto %282%29.jpg" />
+    <Content Include="Content\Images\sinhto %283%29.jpg" />
+    <Content Include="Content\Images\sinhto %284%29.jpg" />
+    <Content Include="Content\Images\sinhto %285%29.jpg" />
+    <Content Include="Content\Images\sinhto %286%29.jpg" />
+    <Content Include="Content\Images\trasua %281%29.jpg" />
+    <Content Include="Content\Images\trasua %282%29.jpg" />
+    <Content Include="Content\Images\trasua %283%29.jpg" />
+    <Content Include="Content\Images\trasua %284%29.jpg" />
     <Content Include="Content\mystyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\GiaoDien.css" />
-    <Content Include="Content\Images\ảnh\coffee %281%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %2810%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %282%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %283%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %284%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %285%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %286%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %287%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %288%29.jpg" />
-    <Content Include="Content\Images\ảnh\coffee %289%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %281%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %2810%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %2811%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %2812%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %2813%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %2814%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %282%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %283%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %284%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %285%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %286%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %287%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %288%29.jpg" />
-    <Content Include="Content\Images\ảnh\fruit juice %289%29.jpg" />
-    <Content Include="Content\Images\ảnh\sinhto %281%29.jpg" />
-    <Content Include="Content\Images\ảnh\sinhto %282%29.jpg" />
-    <Content Include="Content\Images\ảnh\sinhto %283%29.jpg" />
-    <Content Include="Content\Images\ảnh\sinhto %284%29.jpg" />
-    <Content Include="Content\Images\ảnh\sinhto %285%29.jpg" />
-    <Content Include="Content\Images\ảnh\sinhto %286%29.jpg" />
-    <Content Include="Content\Images\ảnh\trasua %281%29.jpg" />
-    <Content Include="Content\Images\ảnh\trasua %282%29.jpg" />
-    <Content Include="Content\Images\ảnh\trasua %283%29.jpg" />
-    <Content Include="Content\Images\ảnh\trasua %284%29.jpg" />
     <Content Include="Models\ModelOrderCoffeeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelOrderCoffeeDB.edmx</DependentUpon>
@@ -258,6 +260,9 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_MasterAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -283,7 +288,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
-    <Content Include="Views\Shared\GiaoDien.cshtml" />
+    <Content Include="Views\Shared\_GiaoDien.cshtml" />
     <Content Include="Views\Home\GiaoDien.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\CategoryPd.cshtml" />
@@ -292,7 +297,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\DangNhap.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

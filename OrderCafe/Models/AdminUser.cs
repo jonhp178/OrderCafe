@@ -11,7 +11,8 @@ namespace OrderCafe.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AdminUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,9 @@ namespace OrderCafe.Models
         public int AdminId { get; set; }
         public string Username { get; set; }
         public string FullName { get; set; }
+
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
+        [Required(ErrorMessage = "vui long nhap mat khau")]
         public string PasswordHash { get; set; }
         public string Phone { get; set; }
         public string Role { get; set; }

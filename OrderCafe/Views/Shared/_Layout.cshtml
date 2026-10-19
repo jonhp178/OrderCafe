@@ -30,7 +30,7 @@
             <div class="col-md-3">
                 <!--<h3>Danh mục thể loại</h3>-->
                 <!--Gắn Partial View menu thể loại-->
-                @*@Html.Action("MenuTheLoai", "Product")*@
+                @Html.Action("MenuTheLoai", "Product")
             </div>
             <div class="col-md-9">
                 @RenderBody()
@@ -42,8 +42,8 @@
         </footer>
     </div>
 
-    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -18,6 +18,12 @@ namespace OrderCafe.Areas.Admin.Controllers
             return View(category);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var category = db.Categories.Where(c => c.CategoryId == id).FirstOrDefault();
