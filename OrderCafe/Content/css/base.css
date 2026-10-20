@@ -1,0 +1,51 @@
+﻿/* ==========================================================
+   base.css - CÀI ĐẶT CHUNG CHO TOÀN WEBSITE
+   Nạp đầu tiên, mọi trang đều dùng.
+   ========================================================== */
+
+:root {
+    color-scheme: light; /* Ép trình duyệt luôn dùng giao diện sáng */
+}
+
+* {
+    box-sizing: border-box; /* Padding và border tính vào chiều rộng, không làm phần tử bị tràn */
+}
+
+html {
+    scroll-behavior: smooth; /* Bấm link dạng #thongtin sẽ cuộn mượt thay vì nhảy */
+}
+
+body {
+    margin: 0; /* Bỏ lề mặc định 8px của trình duyệt */
+    background: #faf6ef; /* Màu nền kem của cả trang */
+    color: #30291f; /* Màu chữ nâu đậm */
+    font-family: Arial, sans-serif; /* Phông chữ; nếu không có Arial thì dùng phông không chân */
+    line-height: 1.65; /* Khoảng cách giữa các dòng chữ */
+}
+
+a:focus-visible {
+    outline: 3px solid #a46f20; /* Viền vàng nâu khi chọn link bằng phím Tab */
+    outline-offset: 4px; /* Viền cách link 4px cho dễ nhìn */
+}
+
+/* ----- Khung bọc nội dung (căn giữa trang) ----- */
+.wrap {
+    width: min(1120px, 92%); /* Rộng tối đa 1120px, màn hình nhỏ thì chiếm 92% */
+    margin: 0 auto; /* Trên/dưới 0, trái/phải tự động => căn giữa */
+}
+
+/* ----- Tiêu đề ----- */
+h1 {
+    font-size: clamp(40px, 7vw, 72px); /* Cỡ chữ tự co giãn: nhỏ nhất 40px, lớn nhất 72px */
+    line-height: 1.15; /* Dòng sát hơn chữ thường vì chữ to */
+    margin: 18px 0 32px; /* Cách trên 18px, hai bên 0, cách dưới 32px */
+}
+
+h2 {
+    font-size: 36px; /* Cỡ chữ tiêu đề cấp 2 */
+    margin: 12px 0; /* Cách trên và dưới 12px */
+}
+
+h3 {
+    margin-top: 0; /* Bỏ khoảng trống phía trên để sát khối cha */
+}

@@ -1,0 +1,40 @@
+﻿@* Thanh điều hướng chính của website *@
+<link rel="stylesheet" href="~/Content/GiaoDien.css"/>
+<header class="top">
+    <div class="wrap bar">
+
+        <a class="logo" href="@Url.Action("GiaoDien", "Home")">HẠT<small>COFFEE</small></a>
+
+        <nav aria-label="Điều hướng chính">
+            <a href="@Url.Action("GiaoDien", "Home")">Trang chủ</a>
+            <a href="@Url.Action("Index", "Product")">Menu</a>
+            <span aria-disabled="true" title="Ưu đãi đang được cập nhật">Ưu đãi (đang cập nhật)</span>
+            <a href="@Url.Action("Index", "Home")#thongtin">Thông tin</a>
+
+            @if (Session["FullName"] != null)
+            {
+                string fullName = (Session["FullName"] as string ?? "").Trim();
+                string shortName = fullName.Split(' ').LastOrDefault();
+                if (string.IsNullOrEmpty(shortName)) { shortName = "Tài khoản"; }
+
+                <div class="user-dd">
+                    <button type="button" class="user-dd-toggle">@shortName &#9662;</button>
+                    <div class="user-dd-menu">
+                        @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button type="submit">Đăng xuất</button>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                @Html.ActionLink("Đăng nhập", "Index", "Account")
+            }
+
+            <a class="hot" href="tel:123456789">Hotline: 123456789</a>
+        </nav>
+
+    </div>
+</header>

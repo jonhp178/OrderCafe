@@ -1,41 +1,489 @@
-:root { color-scheme: light; }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: #faf6ef; color: #30291f; font-family: Arial, sans-serif; line-height: 1.65; }
-a { color: inherit; }
-a:focus-visible { outline: 3px solid #a46f20; outline-offset: 4px; }
-.wrap { width: min(1120px, 92%); margin: 0 auto; }
-.top { background: #fffdf8; border-bottom: 1px solid #e4dacb; }
-.bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0; }
-.logo { color: #4d3925; font-size: 32px; font-weight: bold; line-height: 1; text-decoration: none; }
-.logo small { display: block; font-size: 11px; letter-spacing: 3px; margin-top: 8px; }
-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
-nav a { text-decoration: none; }
-nav a:hover { text-decoration: underline; }
-nav [aria-disabled="true"] { color: #746b60; font-size: 13px; }
-.hot { font-weight: bold; }
-.hero { padding: 96px 0; background: #354838; color: #fffaf0; }
-.eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 13px; }
-h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1.15; margin: 18px 0 32px; }
-h2 { font-size: 36px; margin: 12px 0; }
-h3 { margin-top: 0; }
-.cta { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn { display: inline-block; border: 1px solid currentColor; border-radius: 6px; padding: 10px 20px; text-decoration: none; }
-.gold { background: #e6c37f; border-color: #e6c37f; color: #30291f; }
-.sec { padding: 64px 0; }
-.info { display: grid; grid-template-columns: 1.3fr 1fr; align-items: start; gap: 48px; }
-.lead { font-size: 20px; }
-.card { padding: 28px; background: #fffdf8; border: 1px solid #e4dacb; border-radius: 12px; }
-.hours { list-style: none; padding: 0; }
-.hours li { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding: 8px 0; border-bottom: 1px solid #e4dacb; }
-.addr { margin-bottom: 0; }
+/* ==========================================================
+   DROPDOWN TÀI KHOẢN (sau khi đăng nhập)
+   ========================================================== */
+
+/* Khung bao: là mốc để menu con định vị tuyệt đối */
+/*header.top .user-dd {
+    position: relative;
+}*/
+
+/* Nút tên người dùng */
+/*header.top .user-dd-toggle {
+    padding: 4px 12px;
+    background: transparent;
+    border: 1px solid #e4dacb;
+    border-radius: 6px;
+    color: #30291f;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+    header.top .user-dd-toggle:hover {
+        background: #e6c37f;
+    }*/
+
+/* Menu con: ẩn mặc định, nổi bên dưới nút, không đẩy header cao lên */
+/*header.top .user-dd-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 140px;
+    padding: 6px;
+    background: #fffdf8;
+    border: 1px solid #e4dacb;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    z-index: 100;
+}*/
+
+/* Hiện menu khi rê chuột hoặc khi đang focus bằng bàn phím */
+/*header.top .user-dd:hover .user-dd-menu,
+header.top .user-dd:focus-within .user-dd-menu {
+    display: block;
+}*/
+
+/* Nút Đăng xuất */
+/*header.top .user-dd-menu button {
+    width: 100%;
+    padding: 8px 12px;
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    color: #30291f;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+}
+
+    header.top .user-dd-menu button:hover {
+        background: #e6c37f;
+    }*/
+
+/* 1. Định vị thẻ cha để làm mốc */
+.user-dd {
+    position: relative; /* Quan trọng: Để menu con căn theo thẻ cha này */
+    display: inline-block; /* Để nó nằm cùng hàng với các menu khác */
+}
+
+/* 2. Style cho nút bấm */
+.user-dd-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px; /* Chỉnh theo font chữ web bạn */
+    color: #333;
+}
+
+/* 3. Xử lý cái Menu bị chồng */
+.user-dd-menu {
+    display: none; /* Mặc định ẩn đi */
+    position: absolute; /* Định vị tuyệt đối so với thẻ cha .user-dd */
+    top: 100%; /* Hiện ngay dưới nút */
+    right: 0; /* Căn lề phải (hoặc left: 0 tùy ý) */
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Đổ bóng cho đẹp */
+    z-index: 1000; /* Đảm bảo nó nổi lên trên các thành phần khác */
+    border-radius: 4px;
+}
+
+/* 4. Hiệu ứng hiển thị (Chọn 1 trong 2 cách dưới) */
+
+/* CÁCH A: Dùng Hover (Rê chuột vào là hiện) */
+.user-dd:hover .user-dd-menu {
+    display: block;
+}
+
+/* CÁCH B: Dùng Click (Cần JavaScript - Xem bước 3) */
+/* .user-dd.show .user-dd-menu { display: block; } */
+
+/* ==========================================================
+   1. CÀI ĐẶT CHUNG
+   ========================================================== */
+
+:root {
+    color-scheme: light; /* Luôn dùng giao diện sáng */
+}
+
+* {
+    box-sizing: border-box; /* Padding/border tính vào chiều rộng, tránh tràn layout */
+}
+
+html {
+    scroll-behavior: smooth; /* Cuộn mượt khi bấm link dạng #thongtin */
+}
+
+body {
+    margin: 0;
+    background: #faf6ef; /* Nền kem */
+    color: #30291f; /* Chữ nâu đậm */
+    font-family: Arial, sans-serif;
+    line-height: 1.65; /* Khoảng cách dòng mặc định */
+}
+
+/* Viền focus khi điều hướng bằng bàn phím (Tab) */
+a:focus-visible {
+    outline: 3px solid #a46f20;
+    outline-offset: 4px;
+}
+
+
+/* ==========================================================
+   2. KHUNG BỐC NỘI DUNG
+   ========================================================== */
+
+.wrap {
+    width: min(1120px, 92%); /* Rộng tối đa 1120px, co lại theo màn hình */
+    margin: 0 auto; /* Căn giữa */
+}
+
+/* ==========================================================
+   3. HEADER
+   ========================================================== */
+
+header.top {
+    background: #fffdf8;
+    border-bottom: 1px solid #e4dacb;
+}
+
+header.top .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 4px 0;
+}
+
+header.top .logo {
+    color: #4d3925;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    text-decoration: none;
+}
+
+    header.top .logo small {
+        display: block;
+        font-size: 8px;
+        letter-spacing: 3px;
+        margin-top: 3px;
+    }
+
+header.top nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 15px;
+    line-height: 1.3;
+}
+
+header.top nav a,
+header.top nav a:link,
+header.top nav a:visited {
+    position: relative;
+    padding: 4px 0;
+    color: #30291f;
+    text-decoration: none;
+    transition: color .25s ease;
+}
+
+header.top nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #a46f20;
+    transition: width .25s ease;
+}
+
+header.top nav a:hover,
+header.top nav a:focus-visible {
+    color: #a46f20;
+    text-decoration: none;
+}
+
+header.top nav a:hover::after,
+header.top nav a:focus-visible::after {
+    width: 100%;
+}
+
+header.top nav [aria-disabled="true"] {
+    color: #746b60;
+    font-size: 13px;
+}
+
+header.top nav .hot {
+    font-weight: bold;
+}
+
 @media (max-width: 760px) {
-    .bar { flex-direction: column; align-items: flex-start; }
-    nav { gap: 12px 16px; }
-    .hero { padding: 64px 0; }
-    .info { grid-template-columns: 1fr; gap: 24px; }
-    .sec { padding: 40px 0; }
+    header.top .bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
+
+
+
+/* ==========================================================
+   4. THANH MENU (NAV)
+   ========================================================== */
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Tự xuống dòng khi màn hình hẹp */
+    gap: 18px; /* Khoảng cách giữa các mục */
+    line-height: 1.3;
+}
+
+    /* Link ở mọi trạng thái: bỏ gạch chân, bỏ màu xanh mặc định */
+    nav a,
+    nav a:link,
+    nav a:visited {
+        position: relative; /* Để thanh gạch ::after bám theo link */
+        padding: 4px 0;
+        color: #30291f;
+        text-decoration: none;
+        transition: color .25s ease;
+    }
+
+        /* Thanh gạch chân ẩn (rộng 0), chỉ hiện khi hover */
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #a46f20;
+            transition: width .25s ease;
+        }
+
+        /* Hover hoặc focus bàn phím: đổi màu chữ + gạch chân trượt ra */
+        nav a:hover,
+        nav a:focus-visible {
+            color: #a46f20;
+        }
+
+            nav a:hover::after,
+            nav a:focus-visible::after {
+                width: 100%;
+            }
+
+    /* Mục chưa dùng được (như "Ưu đãi") hiện mờ hơn */
+    nav [aria-disabled="true"] {
+        color: #746b60;
+        font-size: 13px;
+    }
+
+/* Số hotline in đậm */
+.hot {
+    font-weight: bold;
+}
+
+
+/* ==========================================================
+   5. TIÊU ĐỀ
+   ========================================================== */
+
+h1 {
+    font-size: clamp(40px, 7vw, 72px); /* Tự co giãn theo màn hình: tối thiểu 40, tối đa 72 */
+    line-height: 1.15;
+    margin: 18px 0 32px;
+}
+
+h2 {
+    font-size: 36px;
+    margin: 12px 0;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+
+/* ==========================================================
+   6. CÁC KHỐI TRANG CHỦ
+   ========================================================== */
+
+/* Banner lớn đầu trang */
+.hero {
+    padding: 96px 0;
+    background: #354838; /* Xanh rêu đậm */
+    color: #fffaf0;
+}
+
+/* Dòng chữ nhỏ viết hoa phía trên tiêu đề */
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+/* Mỗi section nội dung */
+.sec {
+    padding: 64px 0;
+}
+
+/* Chia 2 cột: cột trái rộng hơn cột phải (1.3 : 1) */
+.info {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+    gap: 48px;
+}
+
+/* Đoạn văn mở đầu, chữ to hơn bình thường */
+.lead {
+    font-size: 20px;
+}
+
+/* Thẻ hộp có viền bo góc */
+.card {
+    padding: 28px;
+    background: #fffdf8;
+    border: 1px solid #e4dacb;
+    border-radius: 12px;
+}
+
+/* Địa chỉ: bỏ khoảng cách dưới cùng */
+.addr {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================
+   7. NÚT BẤM
+   ========================================================== */
+
+/* Nhóm các nút nằm ngang */
+.cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Nút cơ bản: viền cùng màu chữ, bo góc */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid currentColor;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* Nút màu vàng */
+.gold {
+    background: #e6c37f;
+    border-color: #e6c37f;
+    color: #30291f;
+}
+
+.line {
+    background: #00CC33;
+    border-color: #00CC33;
+    color: darkgreen;
+}
+
+
+/* ==========================================================
+   8. GIỜ MỞ CỬA
+   ========================================================== */
+
+.hours {
+    list-style: none; /* Bỏ dấu chấm đầu dòng */
+    padding: 0;
+}
+
+/* Mỗi dòng: tên ngày bên trái, giờ bên phải, có đường kẻ dưới */
+.hours li {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e4dacb;
+}
+
+
+/* ==========================================================
+   9. RESPONSIVE (MÀN HÌNH ≤ 760px: ĐIỆN THOẠI/TABLET NHỎ)
+   ========================================================== */
+
+@media (max-width: 760px) {
+    .bar {
+        flex-direction: column; /* Logo và menu xếp dọc */
+        align-items: flex-start;
+    }
+
+    nav {
+        gap: 12px 16px;
+    }
+
+    .hero {
+        padding: 64px 0;
+    }
+
+    .info {
+        grid-template-columns: 1fr; /* 2 cột thành 1 cột */
+        gap: 24px;
+    }
+
+    .sec {
+        padding: 40px 0;
+    }
+}
+
+
+/* ==========================================================
+   10. TRUY CẬP: TẮT HIỆU ỨNG CHO NGƯỜI DÙNG KHÔNG THÍCH CHUYỂN ĐỘNG
+   ========================================================== */
+
 @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
+    html {
+        scroll-behavior: auto;
+    }
 }
+
+/* ==========================================================
+   TRANG MENU: SIDEBAR + NỘI DUNG
+   ========================================================== */
+
+.menu-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* Sidebar 260px, phần còn lại cho nội dung */
+    gap: 32px;
+    padding: 32px 0;
+}
+
+/* Lưới sản phẩm 3 cột */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.product-card img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+@media (max-width: 760px) {
+    .menu-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

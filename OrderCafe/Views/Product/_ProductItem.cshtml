@@ -1,5 +1,6 @@
 ﻿@model OrderCafe.Models.Product
 
+
 <div class="col-md-4">
     <div class="thumbnail">
         <img src="@Url.Content("~/content/Images/" + Model.ImageUrl)" alt="@Model.ProductName" style="height:180px; object-fit:cover;" />
@@ -8,6 +9,8 @@
             <p>Thể loại: @Model.Category.CategoryName</p>
             <p><strong>@Model.Price.ToString("#,##0") đ</strong></p>
             @Html.ActionLink("mua", "Details", "Sach", new { id = Model.ProductName },
+                new { @class = "btn btn-primary" })
+            @Html.ActionLink("chi tiết", "Details", "product", new { id = Model.ProductId },
                 new { @class = "btn btn-primary" })
         </div>
     </div>

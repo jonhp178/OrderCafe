@@ -1,0 +1,81 @@
+﻿/* ==========================================================
+   home.css - TRANG CHỦ (banner, thông tin, giờ mở cửa)
+   Chỉ nạp ở _GiaoDien.cshtml.
+   ========================================================== */
+
+/* Banner lớn đầu trang */
+.hero {
+    padding: 96px 0; /* Đệm trên/dưới 96px cho banner thoáng */
+    background: #354838; /* Nền xanh rêu đậm */
+    color: #fffaf0; /* Chữ màu kem, nổi trên nền tối */
+}
+
+/* Dòng chữ nhỏ viết hoa phía trên tiêu đề */
+.eyebrow {
+    text-transform: uppercase; /* Tự chuyển chữ thành IN HOA */
+    letter-spacing: 2px; /* Giãn chữ */
+    font-size: 13px; /* Cỡ chữ nhỏ */
+}
+
+/* Mỗi khối nội dung của trang */
+.sec {
+    padding: 64px 0; /* Đệm trên/dưới 64px để các khối cách nhau */
+}
+
+/* Bố cục 2 cột: trái rộng hơn phải */
+.info {
+    display: grid; /* Dùng lưới CSS */
+    grid-template-columns: 1.3fr 1fr; /* Tỉ lệ cột trái : cột phải = 1.3 : 1 */
+    align-items: start; /* Hai cột cùng căn trên cùng */
+    gap: 48px; /* Khoảng cách giữa hai cột */
+}
+
+/* Đoạn văn mở đầu */
+.lead {
+    font-size: 20px; /* Chữ to hơn đoạn thường */
+}
+
+/* Thẻ hộp có viền bo góc */
+.card {
+    padding: 28px; /* Đệm trong */
+    background: #fffdf8; /* Nền kem sáng */
+    border: 1px solid #e4dacb; /* Viền mảnh */
+    border-radius: 12px; /* Bo góc tròn hơn nút */
+}
+
+/* Địa chỉ */
+.addr {
+    margin-bottom: 0; /* Bỏ khoảng cách phía dưới */
+}
+
+/* ----- Giờ mở cửa ----- */
+.hours {
+    list-style: none; /* Bỏ chấm đầu dòng */
+    padding: 0; /* Bỏ thụt lề mặc định của danh sách */
+}
+
+    /* Mỗi dòng: tên ngày bên trái, giờ bên phải */
+    .hours li {
+        display: flex; /* Xếp ngày và giờ trên một hàng */
+        justify-content: space-between; /* Ngày sát trái, giờ sát phải */
+        flex-wrap: wrap; /* Hẹp quá thì xuống dòng */
+        gap: 8px 16px; /* Khoảng cách dòng 8px, cột 16px */
+        padding: 8px 0; /* Đệm trên/dưới */
+        border-bottom: 1px solid #e4dacb; /* Đường kẻ ngăn các dòng */
+    }
+
+/* ----- Điện thoại / tablet nhỏ ----- */
+@media (max-width: 760px) {
+    .hero {
+        padding: 64px 0; /* Banner thấp lại cho màn hình nhỏ */
+    }
+
+    .info {
+        grid-template-columns: 1fr; /* 2 cột thành 1 cột */
+        gap: 24px; /* Giảm khoảng cách */
+    }
+
+    .sec {
+        padding: 40px 0; /* Giảm đệm các khối */
+    }
+}

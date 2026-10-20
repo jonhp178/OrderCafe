@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace OrderCafe.Areas.Admin.Controllers
 {
@@ -56,6 +57,21 @@ namespace OrderCafe.Areas.Admin.Controllers
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var product = db.Products.Find(id);
+            if(product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
     }
 }
