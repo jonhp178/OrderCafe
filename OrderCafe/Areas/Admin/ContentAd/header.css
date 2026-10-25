@@ -1,0 +1,168 @@
+﻿/* ==========================================================
+   header.css - THANH ĐẦU TRANG (logo + menu + tài khoản)
+   Mọi selector đều bắt đầu bằng "header.top" để không bị
+   Bootstrap hoặc CSS khác ghi đè.
+   ========================================================== */
+
+/* ----- Khung header ----- */
+header.top {
+    background: #fffdf8; /* Nền kem sáng, nhạt hơn nền trang */
+    border-bottom: 1px solid #e4dacb; /* Đường kẻ mảnh ngăn header với nội dung */
+}
+
+    /* Thanh ngang: logo bên trái, menu bên phải */
+    header.top .bar {
+        display: flex; /* Xếp logo và menu thành một hàng */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        justify-content: space-between; /* Đẩy logo sang trái, menu sang phải */
+        gap: 24px; /* Khoảng cách tối thiểu giữa logo và menu */
+        padding: 4px 0; /* Đệm trên/dưới 4px => header gọn */
+    }
+
+    /* ----- Logo ----- */
+    header.top .logo {
+        color: #4d3925; /* Màu nâu của logo */
+        font-size: 20px; /* Cỡ chữ "HẠT" */
+        font-weight: bold; /* In đậm */
+        line-height: 1; /* Dòng sát nhau để logo thấp */
+        text-decoration: none; /* Bỏ gạch chân */
+    }
+
+        /* Chữ "COFFEE" nhỏ nằm dưới chữ "HẠT" */
+        header.top .logo small {
+            display: block; /* Xuống dòng riêng bên dưới "HẠT" */
+            font-size: 8px; /* Chữ rất nhỏ */
+            letter-spacing: 3px; /* Giãn khoảng cách giữa các chữ cái */
+            margin-top: 3px; /* Cách chữ "HẠT" 3px */
+        }
+
+    /* ----- Menu điều hướng ----- */
+    header.top nav {
+        display: flex; /* Các mục xếp hàng ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        flex-wrap: wrap; /* Màn hình hẹp thì tự xuống dòng */
+        gap: 16px; /* Khoảng cách giữa các mục */
+        font-size: 15px; /* Cỡ chữ menu */
+        line-height: 1.3; /* Khoảng cách dòng nhỏ để menu thấp */
+    }
+
+        /* Link ở mọi trạng thái: bỏ gạch chân và màu xanh mặc định */
+        header.top nav a,
+        header.top nav a:link,
+        header.top nav a:visited {
+            position: relative; /* Làm mốc cho thanh gạch ::after bên dưới */
+            padding: 4px 0; /* Đệm trên/dưới để có chỗ cho thanh gạch */
+            color: #30291f; /* Chữ nâu đậm */
+            text-decoration: none; /* Bỏ gạch chân */
+            transition: color .25s ease; /* Đổi màu chữ mượt trong 0.25 giây */
+        }
+
+            /* Thanh gạch chân giả: ban đầu rộng 0 nên không nhìn thấy */
+            header.top nav a::after {
+                content: ""; /* Bắt buộc phải có để ::after hiển thị */
+                position: absolute; /* Đặt theo vị trí của link (nhờ position: relative ở trên) */
+                left: 0; /* Bắt đầu từ mép trái link */
+                bottom: 0; /* Nằm sát đáy link */
+                width: 0; /* Ẩn: chiều rộng bằng 0 */
+                height: 2px; /* Dày 2px */
+                background: #a46f20; /* Màu vàng nâu */
+                transition: width .25s ease; /* Chiều rộng thay đổi mượt => hiệu ứng trượt */
+            }
+
+            /* Rê chuột hoặc chọn bằng phím: đổi màu chữ */
+            header.top nav a:hover,
+            header.top nav a:focus-visible {
+                color: #a46f20; /* Chữ chuyển sang vàng nâu */
+                text-decoration: none; /* Đảm bảo không bị gạch chân */
+            }
+
+                /* Rê chuột hoặc chọn bằng phím: thanh gạch trượt ra */
+                header.top nav a:hover::after,
+                header.top nav a:focus-visible::after {
+                    width: 100%; /* Từ 0 giãn ra bằng chiều rộng link */
+                }
+
+        /* Mục chưa dùng được, ví dụ "Ưu đãi (đang cập nhật)" */
+        header.top nav [aria-disabled="true"] {
+            color: #746b60; /* Màu xám nâu cho thấy đang bị tắt */
+            font-size: 13px; /* Nhỏ hơn mục thường */
+        }
+
+        /* Số hotline */
+        header.top nav .hot {
+            font-weight: bold; /* In đậm cho nổi bật */
+        }
+
+    /* ----- Dropdown tài khoản (sau khi đăng nhập) ----- */
+
+    /* Khung bao: làm mốc để menu con định vị theo */
+    header.top .user-dd {
+        position: relative; /* Menu con dùng absolute sẽ bám theo khung này */
+    }
+
+    /* Nút hiển thị tên người dùng */
+    header.top .user-dd-toggle {
+        padding: 4px 12px; /* Đệm trong của nút */
+        background: transparent; /* Nền trong suốt, bỏ nền xám mặc định */
+        border: 1px solid #e4dacb; /* Viền mảnh màu kem đậm */
+        border-radius: 6px; /* Bo góc */
+        color: #30291f; /* Chữ nâu đậm */
+        font-size: 15px; /* Cỡ chữ bằng các mục menu */
+        cursor: pointer; /* Con trỏ hình bàn tay */
+        transition: background .2s ease; /* Đổi nền mượt */
+    }
+
+        header.top .user-dd-toggle:hover {
+            background: #e6c37f; /* Rê chuột vào thì nền vàng nhạt */
+        }
+
+    /* Menu con (chứa nút Đăng xuất): ẩn sẵn, nổi bên dưới nút */
+    header.top .user-dd-menu {
+        display: none; /* Ẩn mặc định */
+        position: absolute; /* Nổi lên, không đẩy header cao lên */
+        top: 100%; /* Nằm ngay dưới nút, không có khe hở */
+        right: 0; /* Căn mép phải với nút */
+        min-width: 140px; /* Rộng tối thiểu 140px */
+        padding: 6px; /* Đệm trong */
+        background: #fffdf8; /* Nền kem sáng */
+        border: 1px solid #e4dacb; /* Viền mảnh */
+        border-radius: 6px; /* Bo góc */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .1); /* Đổ bóng nhẹ cho nổi khỏi nền */
+        z-index: 100; /* Nằm trên các phần tử khác */
+    }
+
+    /* Hiện menu con khi rê chuột hoặc khi nút đang được focus */
+    header.top .user-dd:hover .user-dd-menu,
+    header.top .user-dd:focus-within .user-dd-menu {
+        display: block; /* Từ ẩn chuyển thành hiện */
+    }
+
+    /* Form đăng xuất bên trong menu con */
+    header.top .user-dd-menu form {
+        margin: 0; /* Bỏ lề mặc định của form */
+    }
+
+    /* Nút Đăng xuất */
+    header.top .user-dd-menu button {
+        width: 100%; /* Nút rộng bằng cả menu */
+        padding: 8px 12px; /* Đệm trong */
+        background: transparent; /* Bỏ nền xám mặc định */
+        border: 0; /* Bỏ viền mặc định */
+        border-radius: 4px; /* Bo góc nhẹ khi hover */
+        color: #30291f; /* Chữ nâu đậm */
+        font-size: 15px; /* Cỡ chữ */
+        text-align: left; /* Chữ căn trái */
+        cursor: pointer; /* Con trỏ bàn tay */
+    }
+
+        header.top .user-dd-menu button:hover {
+            background: #e6c37f; /* Rê chuột vào thì nền vàng nhạt */
+        }
+
+/* ----- Điện thoại / tablet nhỏ ----- */
+@media (max-width: 760px) {
+    header.top .bar {
+        flex-direction: column; /* Logo và menu xếp dọc */
+        align-items: flex-start; /* Căn về bên trái */
+    }
+}

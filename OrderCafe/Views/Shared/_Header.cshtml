@@ -1,5 +1,6 @@
 ﻿@* Thanh điều hướng chính của website *@
 <link rel="stylesheet" href="~/Content/GiaoDien.css"/>
+@*<link rel="stylesheet" href="~/Content/css/base.css" />*@
 <header class="top">
     <div class="wrap bar">
 
@@ -30,8 +31,13 @@
             }
             else
             {
-                @Html.ActionLink("Đăng nhập", "Index", "Account")
+                <a href="@Url.Action("Index", "Account")"
+                   onclick="var popup = document.getElementById('loginPopup'); if (popup instanceof HTMLDialogElement) { popup.showModal(); return false; }">
+                    Đăng nhập
+                </a>
             }
+
+            <a href="@Url.Action("GiaoDien", "Order")">giỏ hàng</a>
 
             <a class="hot" href="tel:123456789">Hotline: 123456789</a>
         </nav>

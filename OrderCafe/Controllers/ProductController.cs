@@ -17,7 +17,7 @@ namespace OrderCafe.Controllers
         {
             var ds = SPdb.Products.Include("Category").AsQueryable();
             if (maTL.HasValue) ds = ds.Where(s => s.CategoryId == maTL.Value);
-            ViewBag.Title = "Danh sách sách";
+            ViewBag.Title = "Danh sách loại";
             return View(ds.ToList());
         }
 

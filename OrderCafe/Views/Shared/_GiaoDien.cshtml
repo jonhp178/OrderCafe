@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Hạt Coffee</title>
     @*<link rel="stylesheet" href="~/Content/bootstrap.min.css"/>*@
     <link rel="stylesheet" href="~/Content/GiaoDien.css" />
+    @*<link rel="stylesheet" href="~/Content/css/base.css" />*@
 </head>
 @*@RenderSection("banner", required: false)*@
 <body>
@@ -26,3 +27,62 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@Scripts.Render("~/bundles/jquery")
+@if (Session["FullName"] == null)
+{
+    <dialog id="loginPopup" aria-labelledby="loginTitle">
+        <button type="button"
+                class="login-close"
+                aria-label="Đóng"
+                onclick="document.getElementById('loginPopup').close()">
+            ×
+        </button>
+
+        <h2 id="loginTitle">Đăng nhập tài khoản</h2>
+
+        @if (TempData["LoginError"] != null)
+        {
+            <p class="login-error" role="alert">
+                @TempData["LoginError"]
+            </p>
+        }
+
+        @using (Html.BeginForm("Authen", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail"
+                   name="Email"
+                   type="email"
+                   autocomplete="username"
+                   required />
+
+            <label for="loginPassword">Mật khẩu</label>
+            <input id="loginPassword"
+                   name="PasswordHash"
+                   type="password"
+                   autocomplete="current-password"
+                   required />
+
+            <button type="submit" class="login-submit">Đăng nhập</button>
+
+            <p>
+                Chưa có tài khoản?
+                <a href="@Url.Action("Register", "Account")">Đăng ký</a>
+            </p>
+        }
+    </dialog>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var controller = '@ViewContext.RouteData.Values["controller"]';
+            var action = '@ViewContext.RouteData.Values["action"]';
+
+            if (controller.toLowerCase() === "home"
+                && action.toLowerCase() === "giaodien") {
+                document.getElementById("loginPopup").showModal();
+            }
+        });
+    </script>
+}

@@ -20,6 +20,27 @@ namespace OrderCafe.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Product product)
+        {
+            try
+            {
+                db.Products.Add(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return Content("loi tai product");
+            }
+        }
+
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var product = db.Products.Where(c => c.CategoryId == id).FirstOrDefault();
