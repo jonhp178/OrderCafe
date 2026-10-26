@@ -1,0 +1,41 @@
+﻿/* ==========================================================
+   buttons.css - NÚT BẤM DÙNG CHUNG
+   ========================================================== */
+
+/* Nhóm nhiều nút nằm ngang cạnh nhau */
+.cta {
+    display: flex; /* Xếp các nút thành hàng ngang */
+    gap: 12px; /* Khoảng cách giữa các nút */
+    flex-wrap: wrap; /* Hết chỗ thì tự xuống dòng */
+}
+
+/* Nút cơ bản */
+.btn {
+    display: inline-block; /* Nằm cùng dòng nhưng chỉnh được padding */
+    padding: 10px 20px; /* Đệm trong: 10px trên/dưới, 20px trái/phải */
+    border: 1px solid currentColor; /* Viền mảnh cùng màu với chữ */
+    border-radius: 6px; /* Bo góc nhẹ */
+    text-decoration: none; /* Bỏ gạch chân của thẻ <a> */
+}
+
+/* Nút màu vàng (dùng kèm .btn) */
+.gold {
+    background: #e6c37f; /* Nền vàng nhạt */
+    border-color: #e6c37f; /* Viền trùng màu nền */
+    color: #30291f; /* Chữ nâu đậm cho dễ đọc */
+}
+
+/* Nút "mua" ở trang Menu */
+.btn-buy {
+    display: inline-block; /* Chỉnh được padding mà không chiếm cả dòng */
+    padding: 8px 20px; /* Đệm trong của nút */
+    background: #354838; /* Nền xanh rêu đậm */
+    color: #fffaf0; /* Chữ màu kem */
+    border-radius: 6px; /* Bo góc */
+    text-decoration: none; /* Bỏ gạch chân */
+    transition: background .2s ease; /* Đổi màu nền mượt trong 0.2 giây */
+}
+
+    .btn-buy:hover {
+        background: #a46f20; /* Rê chuột vào thì nền chuyển sang vàng nâu */
+    }

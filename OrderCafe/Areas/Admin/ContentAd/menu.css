@@ -1,0 +1,63 @@
+﻿/* ==========================================================
+   menu.css - TRANG MENU (sidebar thể loại + lưới sản phẩm)
+   Chỉ nạp ở _MasterLayout.cshtml.
+   ========================================================== */
+
+/* ----- Bố cục chính: sidebar trái, nội dung phải ----- */
+.menu-layout {
+    display: grid; /* Dùng lưới CSS */
+    grid-template-columns: 260px 1fr; /* Sidebar rộng 260px, phần còn lại cho nội dung */
+    gap: 32px; /* Khoảng cách giữa sidebar và nội dung */
+    padding: 32px 0; /* Đệm trên/dưới */
+}
+
+    /* ----- Sidebar: danh mục thể loại ----- */
+    .menu-layout aside a {
+        display: block; /* Mỗi thể loại chiếm một dòng */
+        padding: 10px 14px; /* Đệm trong */
+        margin-bottom: 8px; /* Khoảng cách giữa các mục */
+        background: #fffdf8; /* Nền kem sáng */
+        border: 1px solid #e4dacb; /* Viền mảnh */
+        border-radius: 6px; /* Bo góc */
+        color: #30291f; /* Chữ nâu đậm */
+        text-decoration: none; /* Bỏ gạch chân */
+        transition: background .2s ease; /* Đổi nền mượt */
+    }
+
+        .menu-layout aside a:hover {
+            background: #e6c37f; /* Rê chuột vào thì nền vàng nhạt */
+        }
+
+/* ----- Lưới sản phẩm ----- */
+.product-grid {
+    display: grid; /* Dùng lưới CSS */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cột đều nhau, không bị nội dung làm giãn */
+    gap: 24px; /* Khoảng cách giữa các thẻ */
+}
+
+/* Thẻ một sản phẩm */
+.product-card {
+    padding: 12px; /* Đệm trong */
+    background: #fffdf8; /* Nền kem sáng */
+    border: 1px solid #e4dacb; /* Viền mảnh */
+    border-radius: 12px; /* Bo góc */
+}
+
+    /* Ảnh sản phẩm */
+    .product-card img {
+        display: block; /* Bỏ khe hở nhỏ phía dưới ảnh */
+        width: 100%; /* Ảnh rộng bằng thẻ */
+        height: 200px; /* Mọi ảnh cao bằng nhau */
+        object-fit: cover; /* Cắt ảnh cho vừa khung, không bị méo */
+    }
+
+/* ----- Điện thoại / tablet nhỏ ----- */
+@media (max-width: 760px) {
+    .menu-layout {
+        grid-template-columns: 1fr; /* Sidebar nằm trên, nội dung nằm dưới */
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Mỗi hàng một sản phẩm */
+    }
+}

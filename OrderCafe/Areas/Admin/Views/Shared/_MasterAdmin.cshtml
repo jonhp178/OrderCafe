@@ -4,8 +4,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/mystyle.css" />
-    <link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />
+    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/base.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/header.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/buttons.css"/>
+    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/menu.css"/>
+
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />*@
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -46,33 +50,27 @@
         </div>
     </header>
     <div id="div-main" style=" display: flex; flex-direction: row;">
-        <div id="div-left" style="width: 25%; height: auto; font-size: 20px; font-family: Arial; text-align: center; ">
-            <h3 style=" text-align: center;">danh mục sản phẩm</h3>
-            <ul style="list-style: none">
+        <div id="div-left" style="width: 20%; height: auto; font-size: 20px; font-family: Arial; text-align: center; ">
+            <h3 style=" text-align: center;">quản lý</h3>
+            <ul style="list-style: none; text-align: center; padding: 0; margin: 0;">
                 <li>
-                    <a href="/Home/Index">trang chủ</a>
+                    <a href="/Home/GiaoDien">trang chủ</a>
                 </li>
                 <li>
-                    <a href="/Home/TrangChu">Máy tính để bàn</a>
+                    <a href="@Url.Action("Index", "Products", new { area = "Admin" })">Product</a>
                 </li>
                 <li>
-                    điện thoại
+                    <a href="@Url.Action("Index", "Category", new { area = "Admin" })">Thể loại</a>
                 </li>
                 <li>
-                    phụ kiện
+                    <a href="/Home/ThongTin">xử lý đơn hàng</a>
                 </li>
                 <li>
-                    <a href="/Categories/Index">Thể loại</a>
-                </li>
-                <li>
-                    <a href="/Home/ThongTin">thông tin</a>
-                </li>
-                <li>
-                    <a href="/Home/DangKy">đăng ký</a>
+                    <a href="@Url.Action("Index", "AdminAcc", new { area = "Admin" })">danh sách admin</a>
                 </li>
             </ul>
         </div>
-        <div id="div-right" style="width: 75%; background-color: antiquewhite;">
+        <div id="div-right" style="width: 80%; background-color: antiquewhite;">
             @RenderBody()
         </div>
     </div>

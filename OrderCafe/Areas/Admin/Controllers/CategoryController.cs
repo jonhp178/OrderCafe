@@ -53,6 +53,37 @@ namespace OrderCafe.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-       
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+
+            }
+            var category = db.Categories.Where(c => c.CategoryId == id).FirstOrDefault();
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            try
+            {
+                var category = db.Categories.Where(c => c.CategoryId == id).FirstOrDefault();
+                db.Categories.Remove(category);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return Content("khong xoa dc vi lien quan den bang khac");
+            }
+        }
+
     }
 }
