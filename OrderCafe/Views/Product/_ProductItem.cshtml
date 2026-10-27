@@ -1,17 +1,43 @@
 ﻿@model OrderCafe.Models.Product
 
-
 <div class="col-md-4">
     <div class="thumbnail">
-        <img src="@Url.Content("~/content/Images/" + Model.ImageUrl)" alt="@Model.ProductName" style="height:180px; object-fit:cover;" />
+        <img src="@Url.Content("~/Content/Images/" + Model.ImageUrl)"
+             alt="@Model.ProductName" />
+
         <div class="caption">
             <h4>@Model.ProductName</h4>
+
             <p>Thể loại: @Model.Category.CategoryName</p>
-            <p><strong>@Model.Price.ToString("#,##0") đ</strong></p>
-            @Html.ActionLink("mua", "Details", "Sach", new { id = Model.ProductName },
-                new { @class = "btn btn-primary" })
-            @Html.ActionLink("chi tiết", "Details", "product", new { id = Model.ProductId },
-                new { @class = "btn btn-primary" })
+
+            <p>
+                <strong>@Model.Price.ToString("#,##0") đ</strong>
+            </p>
+
+            @using (Html.BeginForm(
+                "AddToCart",
+                "Cart",
+                new { area = "" },
+                FormMethod.Post,
+                null))
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       name="id"
+                       value="@Model.ProductId" />
+
+                <button type="submit" class="btn btn-primary">
+                    Mua
+                </button>
+            }
+
+            @Html.ActionLink(
+                     "Chi tiết",
+                     "Details",
+                     "Product",
+                     new { id = Model.ProductId },
+                     new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>

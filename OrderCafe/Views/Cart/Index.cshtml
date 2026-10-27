@@ -1,0 +1,96 @@
+﻿@using System.Linq
+@model List<OrderCafe.Models.CartItem>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_GiaoDien.cshtml";
+}
+
+<h2>Giỏ hàng của bạn</h2>
+
+@if (TempData["CartMessage"] != null)
+{
+    <p role="alert">@TempData["CartMessage"]</p>
+}
+
+@if (Model.Count == 0)
+{
+    <p>Giỏ hàng của bạn đang trống.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+
+                    <td>@item.UnitPrice.ToString("#,##0") đ</td>
+
+                    <td>
+                        @using (Html.BeginForm(
+                            "UpdateCart", "Cart",
+                            new { area = "" },
+                            FormMethod.Post, null))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@item.ProductId" />
+
+                            <input type="number"
+                                   name="quantity"
+                                   value="@item.Quantity"
+                                   min="1"
+                                   max="99"
+                                   aria-label="Số lượng"
+                                   required />
+
+                            <button type="submit">Cập nhật</button>
+                        }
+                    </td>
+
+                    <td>@item.TotalPrice.ToString("#,##0") đ</td>
+
+                    <td>
+                        @using (Html.BeginForm(
+                            "RemoveFromCart", "Cart",
+                            new { area = "" },
+                            FormMethod.Post, null))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@item.ProductId" />
+
+                            <button type="submit">Xóa</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>
+        Tổng tiền: @Model.Sum(x => x.TotalPrice).ToString("#,##0") đ
+    </h3>
+}
+
+<p>
+    <a href="@Url.Action("Index", "Product", new { area = "" })">
+        Tiếp tục mua hàng
+    </a>
+</p>

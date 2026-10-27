@@ -1,4 +1,4 @@
-﻿@* Thanh điều hướng chính của website *@
+@* Thanh điều hướng chính của website *@
 <link rel="stylesheet" href="~/Content/GiaoDien.css"/>
 @*<link rel="stylesheet" href="~/Content/css/base.css" />*@
 <header class="top">
@@ -9,6 +9,7 @@
         <nav aria-label="Điều hướng chính">
             <a href="@Url.Action("GiaoDien", "Home")">Trang chủ</a>
             <a href="@Url.Action("Index", "Product")">Menu</a>
+            <a href="@Url.Action("Index", "Cart", new { area = "" })">Giỏ hàng</a>
             <span aria-disabled="true" title="Ưu đãi đang được cập nhật">Ưu đãi (đang cập nhật)</span>
             <a href="@Url.Action("Index", "Home")#thongtin">Thông tin</a>
 
@@ -31,8 +32,8 @@
             }
             else
             {
-                <a href="@Url.Action("Index", "Account")"
-                   onclick="var popup = document.getElementById('loginPopup'); if (popup instanceof HTMLDialogElement) { popup.showModal(); return false; }">
+                <a href="@Url.Action("Index", "Account", new { area = "" })"
+                   data-open-login>
                     Đăng nhập
                 </a>
             }

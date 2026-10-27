@@ -1,88 +1,98 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var controllerName = ViewContext.RouteData.Values["controller"] as string;
+    var actionName = ViewContext.RouteData.Values["action"] as string;
+
+    bool autoOpenLogin =
+        Session["FullName"] == null &&
+        string.Equals(controllerName, "Home", StringComparison.OrdinalIgnoreCase) &&
+        string.Equals(actionName, "GiaoDien", StringComparison.OrdinalIgnoreCase);
+}
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>@ViewBag.Title - Hạt Coffee</title>
-    @*<link rel="stylesheet" href="~/Content/bootstrap.min.css"/>*@
-    <link rel="stylesheet" href="~/Content/GiaoDien.css" />
-    @*<link rel="stylesheet" href="~/Content/css/base.css" />*@
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/login-popup.css")" />
 </head>
-@*@RenderSection("banner", required: false)*@
 <body>
     @Html.Partial("_Header")
+
     <div class="container body-content">
         @RenderBody()
     </div>
-    <div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - HẠT COFFEE</p>
-        </footer>
-    </div>
-    @*<main>
-            @RenderBody()
-        </main>*@
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
-@Scripts.Render("~/bundles/jquery")
-@if (Session["FullName"] == null)
-{
-    <dialog id="loginPopup" aria-labelledby="loginTitle">
-        <button type="button"
-                class="login-close"
-                aria-label="Đóng"
-                onclick="document.getElementById('loginPopup').close()">
-            ×
-        </button>
 
-        <h2 id="loginTitle">Đăng nhập tài khoản</h2>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - HẠT COFFEE</p>
+    </footer>
 
-        @if (TempData["LoginError"] != null)
-        {
-            <p class="login-error" role="alert">
-                @TempData["LoginError"]
-            </p>
-        }
+    <dialog id="loginPopup"
+            aria-labelledby="loginPopupTitle"
+            data-auto-open="@(autoOpenLogin ? "true" : "false")">
 
-        @using (Html.BeginForm("Authen", "Account", FormMethod.Post))
+        <div class="login-heading">
+            <button type="button"
+                    id="closeLoginPopup"
+                    class="login-close"
+                    aria-label="Đóng đăng nhập">
+                &times;
+            </button>
+            <h2 id="loginPopupTitle">Đăng nhập tài khoản</h2>
+        </div>
+
+        @using (Html.BeginForm(
+            "Authen",
+            "Account",
+            new { area = "" },
+            FormMethod.Post,
+            new { id = "popupLoginForm" }))
         {
             @Html.AntiForgeryToken()
 
-            <label for="loginEmail">Email</label>
-            <input id="loginEmail"
-                   name="Email"
-                   type="email"
-                   autocomplete="username"
-                   required />
+            <div class="login-field">
+                <label for="popupEmail">Email</label>
 
-            <label for="loginPassword">Mật khẩu</label>
-            <input id="loginPassword"
-                   name="PasswordHash"
-                   type="password"
-                   autocomplete="current-password"
-                   required />
+                <input type="email"
+                       id="popupEmail"
+                       name="Email"
+                       autocomplete="username"
+                       placeholder="Nhập email"
+                       required />
+            </div>
 
-            <button type="submit" class="login-submit">Đăng nhập</button>
+            <div class="login-field">
+                <label for="popupPassword">Mật khẩu</label>
 
-            <p>
-                Chưa có tài khoản?
-                <a href="@Url.Action("Register", "Account")">Đăng ký</a>
-            </p>
+                <input type="password"
+                       id="popupPassword"
+                       name="PasswordHash"
+                       autocomplete="current-password"
+                       placeholder="Nhập mật khẩu"
+                       required />
+            </div>
+
+            <button type="submit" class="login-submit">
+                Đăng nhập
+            </button>
         }
+
+        <p class="login-register">
+            Chưa có tài khoản?
+            <a href="@Url.Action("Register", "Account", new { area = "" })">
+                Đăng ký
+            </a>
+        </p>
     </dialog>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var controller = '@ViewContext.RouteData.Values["controller"]';
-            var action = '@ViewContext.RouteData.Values["action"]';
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
-            if (controller.toLowerCase() === "home"
-                && action.toLowerCase() === "giaodien") {
-                document.getElementById("loginPopup").showModal();
-            }
-        });
-    </script>
-}
+    <script src="@Url.Content("~/Scripts/login-popup.js")"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

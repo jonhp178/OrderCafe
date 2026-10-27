@@ -1,16 +1,7 @@
-﻿@model OrderCafe.Models.Customer
+@model OrderCafe.Models.Customer
 
-@*@{
-<<<<<<< Updated upstream
-    ViewBag.Title = "Đăng Nhập";
-    Layout = "~/Views/Shared/_GiaoDien.cshtml";
-=======
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_MasterLayout.cshtml";
->>>>>>> Stashed changes
-}*@
-@{ 
-    ViewBag.Title = "đăng nhập";
+@{
+    ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_GiaoDien.cshtml";
 }
 
@@ -23,20 +14,20 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     @*<div class="form-group">
-        @Html.LabelFor(m => m.FullName)
-        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
-    </div>*@
+            @Html.LabelFor(m => m.FullName)
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+        </div>*@
     <div class="form-group">
         @Html.LabelFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
     </div>
     @*<div class="form-group">
-        @Html.LabelFor(m => m.Phone)
-        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = 10 })
-        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-    </div>*@
+            @Html.LabelFor(m => m.Phone)
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = 10 })
+            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+        </div>*@
     <div class="form-group">
         @Html.LabelFor(m => m.PasswordHash)
         @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
