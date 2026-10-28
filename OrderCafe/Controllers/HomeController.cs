@@ -16,6 +16,11 @@ namespace OrderCafe.Controllers
             return View("GiaoDien");
         }
 
+        public ActionResult ThongTin()
+        {
+            return View();
+        }
+
         public ActionResult DangNhap()
         {
             return View();

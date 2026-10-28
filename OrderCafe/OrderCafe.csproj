@@ -323,6 +323,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\GiaoDien.cshtml" />
+    <Content Include="Views\Home\ThongTin.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\CategoryPd.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
