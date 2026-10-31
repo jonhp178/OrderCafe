@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Thử thanh toán VNPay</title>
+</head>
+<body>
+    <h2>Thử thanh toán VNPay Sandbox</h2>
+
+    <p>Số tiền thử: 10.000đ</p>
+
+    @using (Html.BeginForm("Create", "Payment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <button type="submit">
+            Thanh toán thử
+        </button>
+    }
+</body>
+</html>
