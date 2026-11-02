@@ -23,15 +23,25 @@ namespace OrderCafe.Models
     
         public int AdminId { get; set; }
         public string Username { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập họ tên.")]
+        [StringLength(50, ErrorMessage = "Họ tên tối đa 50 ký tự.")]
+        [RegularExpression(@"^[a-zA-ZÀ-ỹ\s]+$",
+            ErrorMessage = "Họ tên chỉ gồm chữ cái và khoảng trắng.")]
         public string FullName { get; set; }
 
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
         [Required(ErrorMessage = "vui long nhap mat khau")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$",
+            ErrorMessage = "Mật khẩu 8–15 ký tự, có ít nhất 1 chữ cái và 1 chữ số, không chứa ký tự đặc biệt.")]
         public string PasswordHash { get; set; }
         public string Phone { get; set; }
         public string Role { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedAt { get; set; }
+
+        [Required(ErrorMessage = "vui long nhap email")]
+        [RegularExpression(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$",
+            ErrorMessage = "email không đúng.")]
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
