@@ -127,9 +127,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminAccController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -283,6 +285,8 @@
     <Content Include="Areas\Admin\Views\OrderDetails\Details.cshtml" />
     <Content Include="Areas\Admin\Views\OrderDetails\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\OrderDetails\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManage\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Products\_product.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
@@ -331,6 +335,9 @@
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Order\Checkout.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

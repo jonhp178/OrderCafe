@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OrderCafe.Models.OrderPro>
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdmin.cshtml";
+    var statuses = new[] { "Pending", "Confirmed", "Shipping", "Completed", "Cancelled" };
+    var labels = new[] { "Chờ xác nhận", "Đã xác nhận", "Đang chuẩn bị / giao", "Hoàn thành", "Đã huỷ" };
+}
+<h2>Quản lý đơn hàng</h2>
+<p>
+@for (var i = 0; i < statuses.Length; i++) {
+    @Html.ActionLink(labels[i], "Index", new { status = statuses[i] }, new { @class = "btn btn-default", style = "margin:3px" })
+}
+</p>
+<table class="table table-bordered table-striped">
+    <thead><tr><th>Mã đơn</th><th>Ngày đặt</th><th>Khách hàng</th><th>Điện thoại</th><th>Tổng tiền</th><th>Thanh toán</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@(item.OrderCode ?? item.OrderId.ToString())</td>
+            <td>@item.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>@(item.Customer == null ? "-" : item.Customer.FullName)</td>
+            <td>@item.ReceiverPhone</td>
+            <td>@item.TotalAmount.ToString("N0")đ</td>
+            <td>@item.PaymentMethod / @item.PaymentStatus</td>
+            <td>@Html.ActionLink("Chi tiết", "Details", new { id = item.OrderId }, new { @class = "btn btn-primary btn-sm" })</td>
+        </tr>
+    }
+    </tbody>
+</table>

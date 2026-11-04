@@ -1,0 +1,44 @@
+﻿@model OrderCafe.Models.OrderPro
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdmin.cshtml";
+}
+<h2>Chi tiết đơn hàng @(Model.OrderCode ?? Model.OrderId.ToString())</h2>
+@if (TempData["Error"] != null) { <div class="alert alert-danger">@TempData["Error"]</div> }
+@if (TempData["Success"] != null) { <div class="alert alert-success">@TempData["Success"]</div> }
+<dl class="dl-horizontal">
+    <dt>Trạng thái</dt><dd>@(Model.Status == "Shipping" ? "Đang chuẩn bị / giao hàng" : Model.Status)</dd>
+    <dt>Ngày đặt</dt><dd>@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</dd>
+    <dt>Khách hàng</dt><dd>@(Model.Customer == null ? "-" : Model.Customer.FullName)</dd>
+    <dt>Điện thoại</dt><dd>@Model.ReceiverPhone</dd>
+    <dt>Địa chỉ</dt><dd>@Model.ShippingAddress</dd>
+    <dt>Ghi chú</dt><dd>@Model.Note</dd>
+    <dt>Thanh toán</dt><dd>@Model.PaymentMethod / @Model.PaymentStatus</dd>
+    <dt>Admin xác nhận</dt><dd>@(Model.AdminUser == null ? "Chưa xác nhận" : Model.AdminUser.FullName)</dd>
+</dl>
+<h3>Món đã đặt</h3>
+<table class="table table-bordered"><thead><tr><th>Món</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th></tr></thead><tbody>
+@foreach (var detail in Model.OrderDetails) {
+    <tr><td>@detail.ProductName</td><td>@detail.UnitPrice.ToString("N0")đ</td><td>@detail.Quantity</td><td>@((detail.UnitPrice * detail.Quantity).ToString("N0"))đ</td></tr>
+}
+</tbody><tfoot><tr><th colspan="3">Tổng cộng</th><th>@Model.TotalAmount.ToString("N0")đ</th></tr></tfoot></table>
+<h3>Giao dịch thanh toán</h3>
+<table class="table table-bordered"><thead><tr><th>Mã giao dịch</th><th>Phương thức</th><th>Số tiền</th><th>Trạng thái</th><th>Thời gian thanh toán</th></tr></thead><tbody>
+@foreach (var payment in Model.Payments) {
+    <tr><td>@(payment.TransactionCode ?? payment.PaymentCode)</td><td>@payment.Method</td><td>@payment.Amount.ToString("N0")đ</td><td>@payment.Status</td><td>@(payment.PaidAt.HasValue ? payment.PaidAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td></tr>
+}
+</tbody></table>
+<div class="btn-toolbar" style="margin:15px 0">
+@if (Model.Status == "Pending") {
+    using (Html.BeginForm("Confirm", "OrderManage", new { id = Model.OrderId }, FormMethod.Post)) { @Html.AntiForgeryToken()<button class="btn btn-success" type="submit">Xác nhận đơn</button> }
+    using (Html.BeginForm("Cancel", "OrderManage", new { id = Model.OrderId }, FormMethod.Post)) { @Html.AntiForgeryToken()<button class="btn btn-danger" type="submit">Huỷ đơn</button> }
+}
+else if (Model.Status == "Confirmed") {
+    using (Html.BeginForm("ChangeStatus", "OrderManage", new { id = Model.OrderId }, FormMethod.Post)) { @Html.AntiForgeryToken()<input type="hidden" name="newStatus" value="Shipping" /><button class="btn btn-primary" type="submit">Bắt đầu chuẩn bị / giao hàng</button> }
+    using (Html.BeginForm("Cancel", "OrderManage", new { id = Model.OrderId }, FormMethod.Post)) { @Html.AntiForgeryToken()<button class="btn btn-danger" type="submit">Huỷ đơn</button> }
+}
+else if (Model.Status == "Shipping") {
+    using (Html.BeginForm("ChangeStatus", "OrderManage", new { id = Model.OrderId }, FormMethod.Post)) { @Html.AntiForgeryToken()<input type="hidden" name="newStatus" value="Completed" /><button class="btn btn-success" type="submit">Hoàn thành đơn</button> }
+}
+@Html.ActionLink("Quay lại danh sách", "Index", new { status = Model.Status }, new { @class = "btn btn-default" })
+</div>

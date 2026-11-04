@@ -1,46 +1,69 @@
 ﻿@model OrderCafe.Models.Customer
 
 @{
-    ViewBag.Title = "Đăng nhập";
+    ViewBag.Title = "Đăng ký";
     Layout = "~/Views/Shared/_GiaoDien.cshtml";
 }
 
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/GiaoDien.css" />
 
-<h2>Đăng Nhập tài khoản</h2>
+<!-- BẮT ĐẦU PHẦN CHỈNH SỬA: Bọc tất cả vào container và row để căn giữa -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- col-md-6 nghĩa là form chiếm 6/12 cột (50% màn hình) trên PC, tự co giãn trên mobile -->
+        <!-- col-lg-5 giúp form nhỏ lại một chút trên màn hình rất lớn cho đẹp -->
+        <div class="col-md-8 col-lg-6">
 
-@using (Html.BeginForm("Authen", "Account", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <!-- Khối trắng bao quanh form (tùy chọn, giúp form nổi bật hơn) -->
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
 
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.FullName)
-            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
-        </div>*@
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
-        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <h2>Đăng Nhập tài khoản</h2>
+
+                    @using (Html.BeginForm("Authen", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("returnUrl", (string)ViewBag.ReturnUrl)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @*<div class="form-group">
+                @Html.LabelFor(m => m.FullName)
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+            </div>*@
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="form-group">
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = 10 })
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+            </div>*@
+                        <div class="form-group">
+                            @*@Html.LabelFor(m => m.PasswordHash)*@
+                            <label>Password</label>
+                            @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>*@
+
+                        <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+                        @Html.ActionLink("chưa có tài khoản? Đăng Kí", "Register", "Account", null, new { @class = "btn btn-link" })
+                    }
+
+                </div>
+            </div>
+
+        </div>
     </div>
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.Phone)
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = 10 })
-            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-        </div>*@
-    <div class="form-group">
-        @Html.LabelFor(m => m.PasswordHash)
-        @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
-    </div>
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword)
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-        </div>*@
-
-    <button type="submit" class="btn btn-primary">Đăng Nhập</button>
-    @Html.ActionLink("chưa có tài khoản? Đăng Kí", "Register", "Account", null, new { @class = "btn btn-link" })
-}
+</div>
+<!-- KẾT THÚC PHẦN CHỈNH SỬA -->
 
 @section Scripts { @Scripts.Render("~/bundles/jqueryval") }
