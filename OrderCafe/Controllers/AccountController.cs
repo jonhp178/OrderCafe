@@ -11,13 +11,14 @@ namespace OrderCafe.Controllers
     {
         CoffeeOrderDBEntities db = new CoffeeOrderDBEntities();
         // GET: Account
-        public ActionResult Index()
+        public ActionResult Index(string returnUrl = null)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Authen(string Email, string PasswordHash)
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Authen(string Email, string PasswordHash, string returnUrl)
         {
             // 1. Kiểm tra xem có phải Admin đăng nhập không
             var checkAd = db.AdminUsers.FirstOrDefault(s => s.Email.Equals(Email) && s.PasswordHash.Equals(PasswordHash));
@@ -38,11 +39,15 @@ namespace OrderCafe.Controllers
                 Session["Email"] = checkCust.Email;
                 Session["role"] = "Customer";
 
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    return Redirect(returnUrl);
+
                 return RedirectToAction("GiaoDien", "Home"); // Chuyển về trang chủ khách hàng
             }
 
             // 3. Nếu kiểm tra cả 2 bảng đều không thấy -> Sai thông tin đăng nhập
             ViewBag.LoginErrorMess = "Error email or password! Try again please!";
+            ViewBag.ReturnUrl = returnUrl;
             return View("Index");
         }
         //public ActionResult Authen(Customer customer, AdminUser adminuser)
@@ -57,8 +62,8 @@ namespace OrderCafe.Controllers
         //        return RedirectToAction("AdminUser", "Home");
         //    }
 
-        //    var check = db.Customers.Where(s => s.Email.Equals(customer.Email) 
-        //    && s.PasswordHash.Equals(customer.PasswordHash)).FirstOrDefault();      
+        //    var check = db.Customers.Where(s => s.Email.Equals(customer.Email)
+        //    && s.PasswordHash.Equals(customer.PasswordHash)).FirstOrDefault();
         //    if (check != null)
         //    {
         //        customer.LoginErrorMess = ("error email or password! try again please!");

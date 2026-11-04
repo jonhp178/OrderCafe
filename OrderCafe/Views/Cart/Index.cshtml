@@ -1,96 +1,101 @@
 ﻿@using System.Linq
 @model List<OrderCafe.Models.CartItem>
+@using System.Globalization
 
 @{
     ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_GiaoDien.cshtml";
 }
 
-<h2>Giỏ hàng của bạn</h2>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/GiaoDien.css" />
 
-@if (TempData["CartMessage"] != null)
-{
-    <p role="alert">@TempData["CartMessage"]</p>
-}
+<div class="container mt-4">
+    <h2 class="mb-4">Giỏ hàng của bạn</h2>
 
-@if (Model.Count == 0)
-{
-    <p>Giỏ hàng của bạn đang trống.</p>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Sản phẩm</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
+    @if (TempData["CartMessage"] != null)
+    {
+        <div class="alert alert-info" role="alert">
+            @TempData["CartMessage"]
+        </div>
+    }
 
-        <tbody>
-            @foreach (var item in Model)
-            {
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-warning">
+            Giỏ hàng của bạn đang trống.
+        </div>
+    }
+    else
+    {
+        <!-- BẮT ĐẦU SỬA: Thêm class table, table-bordered, table-hover, align-middle -->
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
                 <tr>
-                    <td>@item.ProductName</td>
-
-                    <td>@item.UnitPrice.ToString("#,##0") đ</td>
-
-                    <td>
-                        @using (Html.BeginForm(
-                            "UpdateCart", "Cart",
-                            new { area = "" },
-                            FormMethod.Post, null))
-                        {
-                            @Html.AntiForgeryToken()
-
-                            <input type="hidden"
-                                   name="id"
-                                   value="@item.ProductId" />
-
-                            <input type="number"
-                                   name="quantity"
-                                   value="@item.Quantity"
-                                   min="1"
-                                   max="99"
-                                   aria-label="Số lượng"
-                                   required />
-
-                            <button type="submit">Cập nhật</button>
-                        }
-                    </td>
-
-                    <td>@item.TotalPrice.ToString("#,##0") đ</td>
-
-                    <td>
-                        @using (Html.BeginForm(
-                            "RemoveFromCart", "Cart",
-                            new { area = "" },
-                            FormMethod.Post, null))
-                        {
-                            @Html.AntiForgeryToken()
-
-                            <input type="hidden"
-                                   name="id"
-                                   value="@item.ProductId" />
-
-                            <button type="submit">Xóa</button>
-                        }
-                    </td>
+                    <th>Sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th class="text-center">Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th class="text-center">Thao tác</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
 
-    <h3>
-        Tổng tiền: @Model.Sum(x => x.TotalPrice).ToString("#,##0") đ
-    </h3>
-}
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@item.ProductName</td>
 
-<p>
-    <a href="@Url.Action("Index", "Product", new { area = "" })">
-        Tiếp tục mua hàng
-    </a>
-</p>
+                        <td>@item.UnitPrice.ToString("N0", CultureInfo.GetCultureInfo("vi-VN")) đ</td>
+
+                        <td class="text-center">
+                            @using (Html.BeginForm("UpdateCart", "Cart", new { area = "" }, FormMethod.Post, new { @class = "d-flex justify-content-center align-items-center gap-2" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.ProductId" />
+
+                                <!-- Thêm class form-control cho input và chỉnh lại độ rộng -->
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" max="99" aria-label="Số lượng" required class="form-control form-control-sm" style="width: 70px;" />
+
+                                <!-- Thêm class btn btn-secondary btn-sm -->
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">Cập nhật</button>
+                            }
+                        </td>
+
+                        <td class="text-danger fw-bold">@item.TotalPrice.ToString("N0", CultureInfo.GetCultureInfo("vi-VN")) đ</td>
+
+                        <td class="text-center">
+                            @using (Html.BeginForm("RemoveFromCart", "Cart", new { area = "" }, FormMethod.Post, null))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.ProductId" />
+
+                                <!-- Thêm class btn btn-danger btn-sm -->
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Xóa</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- KẾT THÚC SỬA -->
+
+        <div class="text-end mt-3">
+            <h3 class="fw-bold">
+                Tổng tiền: <span class="text-danger">@Model.Sum(x => x.TotalPrice).ToString("N0", CultureInfo.GetCultureInfo("vi-VN")) đ</span>
+            </h3>
+        </div>
+
+        <div class="mt-3 mb-4">
+            @Html.ActionLink("Tiến hành đặt hàng", "Checkout", "Order", null, new { @class = "btn btn-primary btn-lg" })
+        </div>
+    }
+
+    <p class="mt-3">
+        <a href="@Url.Action("Index", "Product", new { area = "" })" class="text-decoration-none">
+            &larr; Tiếp tục mua hàng
+        </a>
+    </p>
+</div>
+
+@section Scripts { @Scripts.Render("~/bundles/jqueryval") }
