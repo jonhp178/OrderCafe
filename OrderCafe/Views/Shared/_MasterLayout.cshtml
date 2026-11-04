@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Content/css/menu.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/base.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/header.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/menu.css?v=3")" />
 </head>
 <body>
     @Html.Partial("_Header")
