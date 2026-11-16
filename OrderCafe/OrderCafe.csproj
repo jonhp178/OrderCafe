@@ -228,6 +228,7 @@
     <Content Include="Content\chatbot.css" />
     <Content Include="Content\css\base.css" />
     <Content Include="Content\css\buttons.css" />
+    <Content Include="Content\css\footer.css" />
     <Content Include="Content\css\header.css" />
     <Content Include="Content\css\home.css" />
     <Content Include="Content\css\login-popup.css" />
@@ -387,6 +388,7 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Shared\ChatBot.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

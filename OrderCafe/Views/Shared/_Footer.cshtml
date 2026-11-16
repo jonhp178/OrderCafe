@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<footer class="site-footer">
+    @* Chia footer thành các cột: thương hiệu, nhóm thực hiện và hỗ trợ. *@
+    <div class="footer-content">
+
+        @* Giới thiệu ngắn về website. *@
+        <section class="footer-column">
+            <h2 class="footer-brand">HẠT COFFEE</h2>
+            <p>Không gian thưởng thức cà phê và đồ uống.</p>
+        </section>
+
+        @* Điền tên thật của những người thực hiện website. *@
+        <section class="footer-column">
+            <h2>Nhóm thực hiện</h2>
+            <p>THAY BẰNG TÊN THÀNH VIÊN 1</p>
+            <p>THAY BẰNG TÊN THÀNH VIÊN 2</p>
+        </section>
+
+        @* Chỉ điền email và số điện thoại hỗ trợ đang sử dụng thật. *@
+        <section class="footer-column">
+            <h2>Liên hệ hỗ trợ</h2>
+            <p>
+                Email:
+                <a href="mailto:phamtuananhpham46@gmail.com" target="_blank"> phamtuananhpham46@gmail.com</a>
+            </p>
+            <p>
+                FaceBook:
+                <a href="https://www.facebook.com/pham.tuan.anh.870600/?locale=vi_VN" target="_blank"> Phạm Tuấn Anh</a>
+            </p>
+        </section>
+    </div>
+
+    @* Dòng bản quyền đặt dưới các cột thông tin. *@
+    <div class="footer-bottom">
+        &copy; @DateTime.Now.Year HẠT COFFEE. Đã đăng ký bản quyền.
+    </div>
+</footer>
