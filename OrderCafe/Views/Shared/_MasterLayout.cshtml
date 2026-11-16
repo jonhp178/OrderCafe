@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/base.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/header.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/menu.css?v=3")" />
+    <link rel="stylesheet" href="~/Content/css/footer.css" />
 </head>
 <body>
     @Html.Partial("_Header")
@@ -21,11 +22,9 @@
                 @RenderBody()
             </div>
         </div>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year -  HẠT COFFEE</p>
-        </footer>
     </div>
+    @Html.Partial("_Footer")
+    
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)*@
