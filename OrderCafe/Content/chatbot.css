@@ -1,0 +1,86 @@
+﻿#cafe-chat {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1000;
+}
+
+    #cafe-chat button {
+        border: 0;
+        border-radius: 8px;
+        padding: 8px 12px;
+        background: #68432d;
+        color: #fff;
+        cursor: pointer;
+    }
+
+#cafe-chat-panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+    width: min(340px, calc(100vw - 32px));
+    box-sizing: border-box;
+    padding: 14px;
+    border-radius: 12px;
+    background: #fff;
+    color: #30241e;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+
+.cafe-chat-heading,
+#cafe-chat-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cafe-chat-heading {
+    justify-content: space-between;
+}
+
+#cafe-chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: min(220px, 38vh);
+    overflow-y: auto;
+    margin: 12px 0;
+    padding: 10px;
+    background: #f8f3ee;
+    border-radius: 8px;
+}
+
+    #cafe-chat-messages .cafe-chat-bubble {
+        flex: none;
+        box-sizing: border-box;
+        max-width: 82%;
+        margin: 0;
+        padding: 8px 12px;
+        font-size: 15px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+
+.cafe-chat-bubble--bot {
+    align-self: flex-start;
+    background: #e9e5e1;
+    color: #30241e;
+    border-radius: 14px 14px 14px 4px;
+}
+
+.cafe-chat-bubble--user {
+    align-self: flex-end;
+    background: #68432d;
+    color: #fff;
+    border-radius: 14px 14px 4px 14px;
+}
+
+#cafe-chat-form {
+    margin-bottom: 8px;
+}
+
+#cafe-chat-input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px;
+}

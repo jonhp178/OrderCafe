@@ -10,15 +10,18 @@
 
 <!DOCTYPE html>
 <html lang="vi">
+<link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/chatbot.css")" />
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>@ViewBag.Title - Hạt Coffee</title>
 
-    @*<link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />*@
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/login-popup.css")" />
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/GiaoDien.css")" />
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/login-popup.css")" />*@
     <link rel="stylesheet" href="~/Content/GiaoDien.css" />
+    <link rel="stylesheet" href="~/Content/chatbot.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/base.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/header.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/buttons.css" />
@@ -83,5 +86,8 @@
     <script src="@Url.Content("~/Scripts/login-popup.js")"></script>
 
     @RenderSection("scripts", required: false)
+
+    @Html.Partial("~/Views/Shared/ChatBot.cshtml")
+    <script src="@Url.Content("~/Scripts/chatbot.js")"></script>
 </body>
 </html>
