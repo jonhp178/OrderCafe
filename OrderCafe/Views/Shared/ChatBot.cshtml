@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "ChatBot";
+}
+
+<div id="cafe-chat">
+    <button id="cafe-chat-toggle" type="button"
+            aria-expanded="false" aria-controls="cafe-chat-panel">
+        Hỗ trợ
+    </button>
+
+    <section id="cafe-chat-panel" aria-labelledby="cafe-chat-title" hidden>
+        <div class="cafe-chat-heading">
+            <strong id="cafe-chat-title">Hỗ trợ OrderCafe</strong>
+            <button id="cafe-chat-close" type="button" aria-label="Đóng chat">×</button>
+        </div>
+
+        <div id="cafe-chat-messages" role="log" aria-label="Tin nhắn">
+            <p class="cafe-chat-bubble cafe-chat-bubble--bot"
+               aria-label="Bot: Chào bạn! Bạn có thể hỏi mình về menu hoặc cách đặt món.">
+                Chào bạn! Bạn có thể hỏi mình về menu hoặc cách đặt món.
+            </p>
+        </div>
+
+        <form id="cafe-chat-form" method="post"
+              action="@Url.Action("Reply", "Chat", new { area = "" })">
+            @Html.AntiForgeryToken()
+
+            <input id="cafe-chat-input" name="message" type="text"
+                   aria-label="Tin nhắn của bạn"
+                   placeholder="Nhập tin nhắn..."
+                   maxlength="300" autocomplete="off" required />
+
+            <button type="submit">Gửi</button>
+        </form>
+
+        <a href="@Url.Action("Index", "Product", new { area = "" })">Xem menu</a>
+    </section>
+</div>
+
