@@ -1,4 +1,5 @@
-﻿using OrderCafe.Models;
+﻿using OrderCafe.Helpers;
+using OrderCafe.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,63 +21,59 @@ namespace OrderCafe.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Authen(string Email, string PasswordHash, string returnUrl)
         {
-            // 1. Kiểm tra xem có phải Admin đăng nhập không
-            var checkAd = db.AdminUsers.FirstOrDefault(s => s.Email.Equals(Email) && s.PasswordHash.Equals(PasswordHash));
-            if (checkAd != null)
-            {
-                Session["FullName"] = checkAd.FullName;
-                Session["Email"] = checkAd.Email;
-                Session["role"] = checkAd.Role; // Hoặc gán cứng là "Admin"
+            // Tìm admin theo email; không tìm theo cả email và mật khẩu nữa.
+            var admin = db.AdminUsers.FirstOrDefault(user => user.Email == Email);
 
-                return RedirectToAction("Index", "Category", new { area = "Admin" }); // Chuyển đến trang quản lý của Admin
+            // Chỉ đăng nhập nếu tìm thấy admin và mật khẩu khớp hash.
+            string upgradedAdminPassword;
+            if (admin != null && PasswordHelper.VerifyAndUpgrade(
+                PasswordHash, admin.PasswordHash, out upgradedAdminPassword))
+            {
+                // Nếu đây là tài khoản cũ, lưu hash mới sau lần đăng nhập thành công.
+                if (upgradedAdminPassword != admin.PasswordHash)
+                {
+                    admin.PasswordHash = upgradedAdminPassword;
+                    db.SaveChanges();
+                }
+
+                Session["FullName"] = admin.FullName;
+                Session["Email"] = admin.Email;
+                Session["role"] = admin.Role;
+                return RedirectToAction("Index", "Category", new { area = "Admin" });
             }
 
-            // 2. Nếu không phải Admin, kiểm tra tiếp trong bảng Customers
-            var checkCust = db.Customers.FirstOrDefault(s => s.Email.Equals(Email) && s.PasswordHash.Equals(PasswordHash));
-            if (checkCust != null)
+            // Nếu email không phải admin hoặc mật khẩu không đúng, kiểm tra bảng khách hàng.
+            var customer = db.Customers.FirstOrDefault(user => user.Email == Email);
+
+            // Chỉ đăng nhập nếu tìm thấy khách và mật khẩu khớp hash.
+            string upgradedCustomerPassword;
+            if (customer != null && PasswordHelper.VerifyAndUpgrade(
+                PasswordHash, customer.PasswordHash, out upgradedCustomerPassword))
             {
-                Session["FullName"] = checkCust.FullName;
-                Session["Email"] = checkCust.Email;
+                // Nếu đây là tài khoản cũ, lưu hash mới sau lần đăng nhập thành công.
+                if (upgradedCustomerPassword != customer.PasswordHash)
+                {
+                    customer.PasswordHash = upgradedCustomerPassword;
+                    db.SaveChanges();
+                }
+
+                Session["FullName"] = customer.FullName;
+                Session["Email"] = customer.Email;
                 Session["role"] = "Customer";
 
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
                     return Redirect(returnUrl);
+                }
 
-                return RedirectToAction("GiaoDien", "Home"); // Chuyển về trang chủ khách hàng
+                return RedirectToAction("GiaoDien", "Home");
             }
 
-            // 3. Nếu kiểm tra cả 2 bảng đều không thấy -> Sai thông tin đăng nhập
+            // Không tìm thấy tài khoản hoặc mật khẩu không khớp.
             ViewBag.LoginErrorMess = "Error email or password! Try again please!";
             ViewBag.ReturnUrl = returnUrl;
             return View("Index");
         }
-        //public ActionResult Authen(Customer customer, AdminUser adminuser)
-        //{
-        //    var checkAd = db.AdminUsers.Where(s => s.Email.Equals(adminuser.Email)
-        //    && s.PasswordHash.Equals(adminuser.PasswordHash)).FirstOrDefault();
-        //    if (checkAd != null)
-        //    {
-        //        Session["FullName"] = checkAd.FullName;
-        //        Session["Email"] = checkAd.Email;
-        //        Session["role"] = checkAd.Role;
-        //        return RedirectToAction("AdminUser", "Home");
-        //    }
-
-        //    var check = db.Customers.Where(s => s.Email.Equals(customer.Email)
-        //    && s.PasswordHash.Equals(customer.PasswordHash)).FirstOrDefault();
-        //    if (check != null)
-        //    {
-        //        customer.LoginErrorMess = ("error email or password! try again please!");
-        //        return View("Index", customer);
-        //    }
-        //    else
-        //    {
-        //        Session["FullName"] = check.FullName;
-        //        Session["Email"] = check.Email;
-        //        return RedirectToAction("GiaoDien", "Home");
-        //    }
-        //    return View();
-        //}
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Logout()
@@ -92,15 +89,26 @@ namespace OrderCafe.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(Customer _User)
         {
+            // Kiểm tra mật khẩu người dùng nhập trước khi thay nó bằng BCrypt hash.
+            if (!string.IsNullOrWhiteSpace(_User.PasswordHash)
+                && !System.Text.RegularExpressions.Regex.IsMatch(
+                    _User.PasswordHash, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$"))
+            {
+                ModelState.AddModelError("PasswordHash",
+                    "Mật khẩu cần 8–15 ký tự, có chữ thường, chữ hoa và chữ số.");
+            }
+
             if (ModelState.IsValid)
             {
                 var check = db.Customers.FirstOrDefault(s => s.Email == _User.Email);
                 if(check == null)
                 {
-                    db.Configuration.ValidateOnSaveEnabled = false;
+                    // PasswordHash lúc này vẫn là mật khẩu người dùng vừa nhập.
+                    // Băm trước khi lưu để database không giữ mật khẩu dạng chữ thường.
+                    _User.PasswordHash = PasswordHelper.Hash(_User.PasswordHash);
                     db.Customers.Add(_User);
                     db.SaveChanges();
                     //neu dk kí thành công thì chuển cái register đó sang login

@@ -35,8 +35,7 @@ namespace OrderCafe.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "vui long nhap mat khau")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$",
-            ErrorMessage = "Mật khẩu 8–15 ký tự, có ít nhất 1 chữ cái và 1 chữ số, không chứa ký tự đặc biệt.")]
+        // Không đặt RegularExpression ở đây: sau khi đăng ký, thuộc tính này chứa BCrypt hash.
         public string PasswordHash { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại.")]

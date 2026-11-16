@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdmin.cshtml";
+}
+
+<section class="admin-page">
+    <div class="page-heading">
+        <div>
+            <p class="page-eyebrow">HẠT COFFEE · QUẢN TRỊ</p>
+            <h1>Tổng quan</h1>
+            <p class="page-description">Theo dõi nhanh tình hình cửa hàng.</p>
+        </div>
+    </div>
+
+    <div class="summary-grid">
+        <a class="summary-card" href="@Url.Action("Index", "Products", new { area = "Admin" })">
+            <span class="summary-label">Sản phẩm</span>
+            <strong>@ViewBag.ProductCount</strong>
+            <span class="summary-link">Mở quản lý sản phẩm →</span>
+        </a>
+
+        <a class="summary-card" href="@Url.Action("Index", "Category", new { area = "Admin" })">
+            <span class="summary-label">Thể loại</span>
+            <strong>@ViewBag.CategoryCount</strong>
+            <span class="summary-link">Mở danh mục →</span>
+        </a>
+
+        <a class="summary-card" href="@Url.Action("Index", "OrderManage", new { area = "Admin" })">
+            <span class="summary-label">Tổng đơn hàng</span>
+            <strong>@ViewBag.OrderCount</strong>
+            <span class="summary-link">Mở quản lý đơn →</span>
+        </a>
+
+        <a class="summary-card summary-card-highlight"
+           href="@Url.Action("Index", "OrderManage", new { area = "Admin", status = "Pending" })">
+            <span class="summary-label">Chờ xác nhận</span>
+            <strong>@ViewBag.PendingCount</strong>
+            <span class="summary-link">Xem đơn cần xử lý →</span>
+        </a>
+    </div>
+
+    <section class="panel">
+        <div class="panel-heading">
+            <div>
+                <h2>Đơn hàng gần đây</h2>
+                <p>Năm đơn được tạo gần nhất.</p>
+            </div>
+
+            <a class="text-link"
+               href="@Url.Action("Index", "OrderManage", new { area = "Admin" })">
+                Xem tất cả
+            </a>
+        </div>
+
+        <div class="table-scroll">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>Ngày đặt</th>
+                        <th>Khách hàng</th>
+                        <th>Tổng tiền</th>
+                        <th>Thanh toán</th>
+                        <th>Trạng thái</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@(order.OrderCode ?? order.OrderId.ToString())</td>
+                            <td>@order.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@(order.Customer == null ? "-" : order.Customer.FullName)</td>
+                            <td>@order.TotalAmount.ToString("N0")đ</td>
+                            <td>@order.PaymentMethod / @order.PaymentStatus</td>
+                            <td>@order.Status</td>
+                            <td>
+                                @Html.ActionLink(
+                                    "Chi tiết",
+                                    "Details",
+                                    "OrderManage",
+                                    new { area = "Admin", id = order.OrderId },
+                                    new { @class = "table-action" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+

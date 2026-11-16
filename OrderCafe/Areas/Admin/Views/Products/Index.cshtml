@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Products/_product.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdmin.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2>sản phẩm</h2>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -60,9 +60,12 @@
             @Html.DisplayFor(modelItem => item.CategoryId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+            <!-- Nhóm các nút thao tác để chúng nằm cạnh nhau -->
+            <div class="action-buttons">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger" })
+            </div>        
         </td>
     </tr>
 }
