@@ -1,0 +1,124 @@
+﻿/* Tạo nền tối mờ phía sau popup. */
+#loginPopup::backdrop {
+    background: rgba(20, 30, 24, 0.72); /* Làm nền phía sau tối lại để popup nổi bật. */
+}
+
+/* Định dạng hộp đăng nhập. */
+#loginPopup {
+    width: min(520px, calc(100% - 32px)); /* Giới hạn chiều rộng, vẫn vừa màn hình điện thoại. */
+    padding: 32px; /* Tạo khoảng trống giữa nội dung và viền hộp. */
+    border: 1px solid #e7dfd2; /* Dùng viền kem nhạt theo màu HAT Coffee. */
+    border-radius: 16px; /* Bo góc hộp cho mềm hơn. */
+    background: #fffdf8; /* Dùng nền kem sáng. */
+    color: #30291f; /* Dùng chữ nâu đậm. */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25); /* Tạo bóng để hộp nổi khỏi nền. */
+}
+
+    /* Căn popup vào giữa màn hình. */
+    #loginPopup[open] {
+        position: fixed; /* Giữ popup cố định theo màn hình. */
+        inset: 0; /* Dùng toàn vùng màn hình để căn giữa. */
+        margin: auto; /* Đặt popup vào chính giữa. */
+    }
+
+/* Đặt nút đóng bên phải tiêu đề. */
+.login-heading {
+    display: flex; /* Đặt nút đóng và tiêu đề cùng một hàng. */
+    align-items: center; /* Căn giữa hai thành phần theo chiều dọc. */
+    justify-content: space-between; /* Đưa nút đóng sang phải. */
+    gap: 16px; /* Giữ khoảng cách nếu tiêu đề dài. */
+}
+
+    /* Định dạng tiêu đề đăng nhập. */
+    .login-heading h2 {
+        margin: 0 0 22px; /* Bỏ lề trên và tạo khoảng cách bên dưới. */
+        color: #294734; /* Dùng màu xanh rêu theo chủ đề quán. */
+        font-size: 28px; /* Làm tiêu đề nổi bật. */
+    }
+
+/* Định dạng nút đóng popup. */
+.login-close {
+    width: 36px; /* Tạo nút vuông vừa đủ bấm. */
+    height: 36px; /* Giữ chiều cao bằng chiều rộng. */
+    border: 0; /* Bỏ viền mặc định. */
+    border-radius: 8px; /* Bo góc nút. */
+    background: #f1eadf; /* Dùng nền kem đậm hơn một chút. */
+    color: #30291f; /* Dùng chữ nâu đậm. */
+    font-size: 24px; /* Làm dấu đóng dễ nhìn. */
+    cursor: pointer; /* Hiện hình bàn tay khi rê chuột. */
+}
+
+/* Tạo khoảng cách giữa các nhóm nhập liệu. */
+.login-field {
+    display: grid; /* Xếp nhãn phía trên ô nhập. */
+    gap: 7px; /* Tạo khoảng cách giữa nhãn và ô nhập. */
+    margin-bottom: 16px; /* Tách nhóm email và mật khẩu. */
+}
+
+    /* Làm nhãn nhập liệu rõ hơn. */
+    .login-field label {
+        color: #4d3925; /* Dùng màu nâu hợp với thương hiệu. */
+        font-size: 14px; /* Để nhãn nhỏ hơn nội dung chính. */
+        font-weight: bold; /* Làm nhãn dễ nhận biết. */
+    }
+
+    /* Định dạng ô email và mật khẩu. */
+    .login-field input {
+        width: 100%; /* Cho ô nhập rộng hết popup. */
+        min-height: 46px; /* Tạo vùng nhập dễ bấm. */
+        padding: 10px 12px; /* Tạo khoảng trống quanh chữ bên trong. */
+        border: 1px solid #d8cdbb; /* Viền màu kem nâu nhạt. */
+        border-radius: 8px; /* Bo góc ô nhập. */
+        background: #fff; /* Giữ nền trắng để dễ nhìn chữ nhập. */
+        color: #30291f; /* Dùng chữ nâu đậm. */
+        font: inherit; /* Dùng cùng phông chữ với popup. */
+    }
+
+        /* Làm nổi ô nhập đang được chọn. */
+        .login-field input:focus {
+            border-color: #a46f20; /* Đổi viền sang vàng nâu. */
+            outline: 2px solid rgba(164, 111, 32, 0.18); /* Thêm viền sáng để dễ thấy focus. */
+        }
+
+/* Định dạng nút đăng nhập. */
+.login-submit {
+    width: 100%; /* Cho nút rộng bằng ô nhập. */
+    min-height: 46px; /* Tạo vùng bấm thoải mái. */
+    margin-top: 4px; /* Tạo khoảng cách nhỏ sau ô mật khẩu. */
+    border: 0; /* Bỏ viền mặc định. */
+    border-radius: 8px; /* Bo góc nút. */
+    background: #365b43; /* Dùng nền xanh rêu. */
+    color: #fffdf8; /* Dùng chữ sáng trên nền tối. */
+    font: inherit; /* Dùng cùng phông chữ với popup. */
+    font-weight: bold; /* Làm nhãn nút rõ hơn. */
+    cursor: pointer; /* Hiện hình bàn tay khi rê chuột. */
+}
+
+    /* Đổi màu nút khi rê chuột. */
+    .login-submit:hover {
+        background: #294734; /* Làm xanh đậm hơn khi tương tác. */
+    }
+
+/* Căn dòng đăng ký dưới nút. */
+.login-register {
+    margin: 20px 0 0; /* Tạo khoảng cách với nút và bỏ lề dưới. */
+    color: #777166; /* Dùng màu chữ phụ. */
+    text-align: center; /* Căn dòng đăng ký ra giữa. */
+}
+
+    /* Định dạng liên kết đăng ký. */
+    .login-register a {
+        color: #8b6535; /* Dùng màu vàng nâu. */
+        font-weight: bold; /* Làm liên kết dễ nhận biết. */
+    }
+
+/* Thu gọn khoảng cách trên điện thoại. */
+@media (max-width: 520px) {
+    #loginPopup {
+        padding: 22px; /* Giảm khoảng trống để nội dung vừa màn hình nhỏ. */
+    }
+
+    .login-heading h2 {
+        font-size: 23px; /* Giảm tiêu đề để không bị tràn trên điện thoại. */
+    }
+}

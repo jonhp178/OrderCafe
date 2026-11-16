@@ -228,6 +228,7 @@
     <Content Include="Content\css\buttons.css" />
     <Content Include="Content\css\header.css" />
     <Content Include="Content\css\home.css" />
+    <Content Include="Content\css\login-popup.css" />
     <Content Include="Content\css\menu.css" />
     <Content Include="Content\GiaoDien.css" />
     <Content Include="Content\HomePages.css" />
