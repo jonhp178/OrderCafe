@@ -1,8 +1,11 @@
-﻿@model OrderCafe.Models.Customer
+﻿<link rel="stylesheet" href="@Url.Content("~/Content/HomePages.css")" />
+@model OrderCafe.Models.Customer
 @{
     ViewBag.Title = "DangNhap";
     Layout = "~/Views/Shared/GiaoDien.cshtml";
 }
 
-<h2>Dang Nhap thanh cong</h2>
-<h3>email:@Session["Email"].ToString()</h3>
+<div class="login-success">
+    <h2>Dang Nhap thanh cong</h2>
+    <h3>email:@Session["Email"].ToString()</h3>
+</div>
