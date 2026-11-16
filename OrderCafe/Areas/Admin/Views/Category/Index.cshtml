@@ -36,9 +36,12 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
+            <!-- Nhóm các nút thao tác để chúng nằm cạnh nhau -->
+            <div class="action-buttons">
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
+            </div>
         </td>
     </tr>
 }
