@@ -32,6 +32,14 @@
 4. Chuẩn bị SQL Server và database phù hợp với model EDMX. Kết nối hiện có nằm trong `OrderCafe/Web.config`; repository chưa kèm script tạo/seed database.
 5. Build và chạy bằng IIS Express trong Visual Studio.
 
+## Chatbot RAG
+
+Website có chatbot ở góc giao diện. Khi khách gửi câu hỏi, `ChatBotController` tìm tối đa 5 món liên quan trong bảng `Products` và danh mục `Categories`, rồi đưa tên món, giá, trạng thái bán và mô tả vào ngữ cảnh gửi cho DeepSeek. Cách truy xuất hiện tại dùng khớp từ khóa tiếng Việt đã chuẩn hóa dấu, không cần dịch vụ vector database; dữ liệu được đọc trực tiếp từ SQL Server nên thay đổi menu có hiệu lực ngay.
+
+Để bật phần trả lời AI, cấu hình biến môi trường Windows `deepseek` với API key của DeepSeek rồi khởi động lại IIS Express/Visual Studio. Không đặt API key trong mã nguồn hoặc đưa vào trình duyệt. Chatbot cần database theo connection string `CoffeeOrderDBEntities` hoạt động; khi không tìm thấy món liên quan, bot được hướng dẫn báo thiếu dữ liệu thay vì tự tạo thông tin.
+
+Trong Visual Studio 2022, mở `OrderCafe.slnx` (hoặc trực tiếp `OrderCafe/OrderCafe.csproj` nếu phiên bản VS chưa hỗ trợ `.slnx`), khôi phục NuGet, cấu hình SQL Server và biến môi trường, sau đó chạy bằng IIS Express.
+
 ## Quy ước quản lý thư mục
 
 - Giữ nguyên các thư mục MVC và đường dẫn tài nguyên hiện tại để không phải sửa mã nguồn hoặc cấu hình project.
