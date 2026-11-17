@@ -243,3 +243,139 @@
     /* Kết thúc chỉnh vùng nội dung. */
 }
 /* Kết thúc nhóm màn hình điện thoại. */
+
+
+/*=============================================================================================================*/
+/*thêm phần giao diện của index*/
+/* Căn tiêu đề và nút thêm tài khoản trên cùng một hàng. */
+.account-page-heading {
+    display: flex; /* Đặt phần tiêu đề và nút cạnh nhau. */
+    align-items: center; /* Căn giữa chúng theo chiều dọc. */
+    justify-content: space-between; /* Đẩy nút sang bên phải. */
+    gap: 20px; /* Giữ khoảng cách nếu màn hình hẹp. */
+    margin-bottom: 24px; /* Tách phần đầu trang khỏi bảng. */
+}
+
+/* Dòng nhãn nhỏ phía trên tiêu đề. */
+.account-eyebrow {
+    margin: 0 0 6px; /* Tạo khoảng cách nhỏ với tiêu đề. */
+    color: #967344; /* Dùng màu vàng nâu theo chủ đề quán. */
+    font-size: 12px; /* Để nhãn nhỏ hơn tiêu đề. */
+    font-weight: bold; /* Làm nhãn dễ nhận ra. */
+    letter-spacing: 1px; /* Giãn chữ nhẹ. */
+}
+
+/* Tiêu đề chính của trang tài khoản. */
+.account-page-heading h1 {
+    margin: 0; /* Bỏ khoảng cách mặc định quanh tiêu đề. */
+    color: var(--chu-chinh); /* Dùng màu chữ chung của admin. */
+    font-size: 30px; /* Làm tiêu đề nổi bật vừa phải. */
+}
+
+/* Dòng mô tả bên dưới tiêu đề. */
+.account-description {
+    margin: 6px 0 0; /* Tạo khoảng cách nhỏ với tiêu đề. */
+    color: var(--chu-phu); /* Dùng màu chữ phụ. */
+}
+
+/* Nút thêm tài khoản. */
+.account-add-button {
+    display: inline-flex; /* Cho phép căn chữ trong nút. */
+    align-items: center; /* Căn chữ giữa theo chiều dọc. */
+    min-height: 44px; /* Tạo vùng bấm đủ rộng. */
+    padding: 0 16px; /* Tạo khoảng trống hai bên chữ. */
+    border-radius: 8px; /* Bo góc nhẹ. */
+    background: var(--nen-menu); /* Dùng xanh rêu giống sidebar admin. */
+    color: #fffdf8; /* Chữ sáng trên nền xanh. */
+    font-weight: bold; /* Làm chữ nút rõ hơn. */
+    text-decoration: none; /* Bỏ gạch chân của liên kết. */
+}
+
+    /* Đổi màu nút thêm khi rê chuột. */
+    .account-add-button:hover {
+        background: #365b43; /* Làm nền xanh sáng hơn khi rê chuột. */
+        color: #fffdf8; /* Giữ chữ sáng. */
+    }
+
+/* Giữ bảng gọn và các cột dễ đọc. */
+.account-table {
+    min-width: 900px; /* Cho bảng đủ chỗ để không ép chữ quá hẹp. */
+}
+
+    /* Tô nền nhẹ cho các dòng chẵn. */
+    .account-table tbody tr:nth-child(even) {
+        background: #faf6ef; /* Phân biệt các dòng mà không dùng màu quá đậm. */
+    }
+
+    /* Hiện nền sáng khi rê chuột lên dòng. */
+    .account-table tbody tr:hover {
+        background: #f3ead9; /* Làm nổi dòng đang xem. */
+    }
+
+/* Nhãn trạng thái tài khoản. */
+.account-status {
+    display: inline-block; /* Giúp nhãn có nền và khoảng đệm riêng. */
+    padding: 5px 9px; /* Tạo khoảng trống quanh chữ. */
+    border-radius: 20px; /* Bo nhãn thành dạng viên thuốc. */
+    font-size: 12px; /* Dùng chữ nhỏ gọn. */
+    font-weight: bold; /* Làm trạng thái dễ đọc. */
+}
+
+/* Trạng thái tài khoản đang hoạt động. */
+.status-active {
+    background: #e3f1e6; /* Nền xanh nhạt. */
+    color: #28633a; /* Chữ xanh đậm. */
+}
+
+/* Trạng thái tài khoản đã khóa. */
+.status-locked {
+    background: #f5e3df; /* Nền đỏ nhạt. */
+    color: #934332; /* Chữ đỏ nâu. */
+}
+
+/* Xếp các nút thao tác trên cùng một hàng. */
+.action-buttons {
+    display: flex; /* Đặt các nút cạnh nhau. */
+    align-items: center; /* Căn nút giữa theo chiều dọc. */
+    gap: 7px; /* Tạo khoảng cách giữa các nút. */
+    white-space: nowrap; /* Tránh chữ trong nút tự xuống dòng. */
+}
+
+/* Kiểu chung của các nút thao tác. */
+.account-action {
+    display: inline-block; /* Cho phép chỉnh khoảng đệm cho liên kết. */
+    padding: 7px 10px; /* Tạo vùng bấm vừa phải. */
+    border-radius: 7px; /* Bo góc nút. */
+    color: #fff; /* Dùng chữ sáng trên nền nút. */
+    font-size: 13px; /* Giữ nút gọn. */
+    text-decoration: none; /* Bỏ gạch chân liên kết. */
+}
+
+/* Nút sửa dùng màu xanh rêu. */
+.action-edit {
+    background: #365b43; /* Nền xanh rêu. */
+}
+
+/* Nút chi tiết dùng màu vàng nâu. */
+.action-details {
+    background: #a46f20; /* Nền vàng nâu. */
+}
+
+/* Nút xóa dùng màu đỏ trầm để dễ nhận biết. */
+.action-delete {
+    background: #9b4b2f; /* Nền đỏ nâu. */
+}
+
+/* Làm các nút đậm hơn khi rê chuột. */
+.account-action:hover {
+    filter: brightness(0.9); /* Giảm độ sáng nhẹ để báo nút đang được rê chuột. */
+    color: #fff; /* Giữ chữ sáng. */
+}
+
+/* Trên màn hình nhỏ, xếp nút thêm xuống dưới tiêu đề. */
+@media (max-width: 700px) {
+    .account-page-heading {
+        align-items: flex-start; /* Căn các phần về phía trên. */
+        flex-direction: column; /* Xếp tiêu đề và nút thành hai hàng. */
+    }
+}

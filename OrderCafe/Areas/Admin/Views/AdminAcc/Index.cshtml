@@ -5,13 +5,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_MasterAdmin.cshtml";
 }
 
-<h2>Index</h2>
-<link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<div class="account-page-heading">
+    <div>
+        <p class="account-eyebrow">QUẢN TRỊ · TÀI KHOẢN</p>
+        <h1>Danh sách tài khoản admin</h1>
+        <p class="account-description">Quản lý quyền truy cập của nhân viên cửa hàng.</p>
+    </div> 
+
+    @Html.ActionLink("Create New", "Create", null, new { @class = "account-add-button" })
+</div>
 <div class="table-scroll">
-    <table class="table">
+    <table class="table admin-table account-table ">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Username)
@@ -53,20 +58,22 @@
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
+                    <span class="account-status @(item.IsActive ? "status-active" : "status-locked")">
+                        @(item.IsActive ? "Đang hoạt động" : "Đã khóa")
+                    </span>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
+                    @(string.IsNullOrWhiteSpace(item.Email) ? "—" : item.Email)
                 </td>
                 <td>
                     <!-- Nhóm các nút thao tác để chúng nằm cạnh nhau -->
                     <div class="action-buttons">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.AdminId }, new { @class = "btn btn-success" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.AdminId }, new { @class = "btn btn-info" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.AdminId }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.AdminId }, new { @class = "account-action action-edit" })
+                        @Html.ActionLink("Details", "Details", new { id = item.AdminId }, new { @class = "account-action action-details" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.AdminId }, new { @class = "account-action action-delete" })
                     </div>
                 </td>
             </tr>

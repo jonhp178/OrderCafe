@@ -26,27 +26,41 @@
                         @Html.AntiForgeryToken()
                         @Html.Hidden("returnUrl", (string)ViewBag.ReturnUrl)
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        @*<div class="form-group">
-                @Html.LabelFor(m => m.FullName)
-                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
-            </div>*@
                         <div class="form-group">
                             @Html.LabelFor(m => m.Email)
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
+
                         @*<div class="form-group">
-                @Html.LabelFor(m => m.Phone)
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = 10 })
-                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.PasswordHash)
+                <label>Password</label>
+                @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
             </div>*@
+
                         <div class="form-group">
-                            @*@Html.LabelFor(m => m.PasswordHash)*@
-                            <label>Password</label>
-                            @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+                            @Html.LabelFor(m => m.PasswordHash, "Password")
+                            <div class="position-relative">
+                                @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", id = "pwd", style = "padding-right: 40px;" })
+                                <!-- Icon: Dùng onclick để gọi hàm đổi trạng thái -->
+                                <span class="position-absolute top-50 translate-middle-y end-0 pe-3"
+                                      style="cursor: pointer; z-index: 10;"
+                                      onclick="
+                                        var pwd = document.getElementById('pwd');
+                                        var icon = this.querySelector('i');
+                                        if (pwd.type === 'password') {
+                                            pwd.type = 'text';
+                                            icon.className = 'fa-solid fa-eye-slash';
+                                        } else {
+                                            pwd.type = 'password';
+                                            icon.className = 'fa-solid fa-eye';
+                                        }
+                                      ">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                                @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                         @*<div class="form-group">
                 @Html.LabelFor(m => m.ConfirmPassword)

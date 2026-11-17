@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width" />
 
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/Admin.css"/>
+
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/base.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/header.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/buttons.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/menu.css" />
     <link rel="stylesheet" href="~/Areas/Admin/ContentAd/mystyle.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/ContentAd/Admin.css?v=2" />
     <!-- Dành cho FA 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -64,6 +65,10 @@
                 <a href="@Url.Action("Index", "AdminAcc", new { area = "Admin" })">
                     <i class="fa-solid fa-users"></i>
                     <span>Tài khoản admin</span>
+                </a>
+                <a href="@Url.Action("Index", "CustomersAcc", new { area = "Admin" })">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Tài Khoảng Người dùng</span>
                 </a>
             </nav>
 
