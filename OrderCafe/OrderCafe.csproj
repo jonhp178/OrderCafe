@@ -146,6 +146,7 @@
     <Compile Include="Areas\Admin\AdminAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminAccController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomersAccController.cs" />
     <Compile Include="Areas\Admin\Controllers\homeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderManageController.cs" />
@@ -345,6 +346,12 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomersAcc\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomersAcc\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomersAcc\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomersAcc\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomersAcc\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />

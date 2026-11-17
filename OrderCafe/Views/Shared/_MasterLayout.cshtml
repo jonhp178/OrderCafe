@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/base.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/header.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/menu.css?v=3")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/menu.css")" />
     <link rel="stylesheet" href="~/Content/css/footer.css" />
 </head>
 <body>
     @Html.Partial("_Header")
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <h3>Danh mục thể loại</h3>
+            <div class="col-md-3 category-sidebar>
+                <h3 class="category-title">Danh mục thể loại</h3>
                 @Html.Action("MenuTheLoai", "Product")
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 menu-content" >
                 @RenderBody()
             </div>
         </div>
