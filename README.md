@@ -32,6 +32,14 @@
 4. Chuẩn bị SQL Server và database phù hợp với model EDMX. Kết nối hiện có nằm trong `OrderCafe/Web.config`; repository chưa kèm script tạo/seed database.
 5. Build và chạy bằng IIS Express trong Visual Studio.
 
+## Chatbot RAG
+
+Website có chatbot ở góc giao diện. Khi khách gửi câu hỏi, `ChatBotController` ghép hai nguồn vào ngữ cảnh gửi cho Ollama: tối đa 5 món liên quan lấy trực tiếp từ `Products`/`Categories` và tối đa 3 đoạn hướng dẫn liên quan từ `OrderCafe/App_Data/ChatbotKnowledge.txt`. Tệp kiến thức mô tả các trang công khai như trang chủ, menu, giỏ hàng, đăng nhập/đăng ký, đặt hàng/thanh toán, theo dõi đơn và thông tin quán. Cách truy xuất hiện tại dùng khớp từ khóa tiếng Việt đã chuẩn hóa dấu, không cần dịch vụ vector database; dữ liệu sản phẩm trong SQL thay đổi là chatbot đọc được ngay.
+
+Mặc định ứng dụng gọi Ollama local tại `http://localhost:11434` với model `llama3.1:8b`; cài/chạy Ollama và tải model trước (`ollama run llama3.1:8b`). Có thể cấu hình biến môi trường Windows `OLLAMA_BASE_URL`, `OLLAMA_MODEL` và (nếu dùng Ollama Cloud) `OLLAMA_API_KEY`, sau đó khởi động lại IIS Express/Visual Studio. Không đặt API key trong mã nguồn hoặc đưa vào trình duyệt. Chatbot cần database theo connection string `CoffeeOrderDBEntities` hoạt động. Khi cập nhật nội dung giao diện hoặc quy trình, cập nhật thêm `App_Data/ChatbotKnowledge.txt`; chatbot không tự phân tích mã Razor/CSS. Chatbot công khai không tra cứu thông tin tài khoản, địa chỉ nhận hàng hay đơn hàng riêng của khách.
+
+Trong Visual Studio 2022, mở `OrderCafe.slnx` (hoặc trực tiếp `OrderCafe/OrderCafe.csproj` nếu phiên bản VS chưa hỗ trợ `.slnx`), khôi phục NuGet, cấu hình SQL Server và biến môi trường, sau đó chạy bằng IIS Express.
+
 ## Quy ước quản lý thư mục
 
 - Giữ nguyên các thư mục MVC và đường dẫn tài nguyên hiện tại để không phải sửa mã nguồn hoặc cấu hình project.

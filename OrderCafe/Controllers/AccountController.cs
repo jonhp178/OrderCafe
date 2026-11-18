@@ -39,7 +39,7 @@ namespace OrderCafe.Controllers
                 Session["FullName"] = admin.FullName;
                 Session["Email"] = admin.Email;
                 Session["role"] = admin.Role;
-                return RedirectToAction("Index", "Category", new { area = "Admin" });
+                return RedirectToAction("Index", "home", new { area = "Admin" });
             }
 
             // Nếu email không phải admin hoặc mật khẩu không đúng, kiểm tra bảng khách hàng.

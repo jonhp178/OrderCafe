@@ -17,7 +17,7 @@ namespace OrderCafe.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
