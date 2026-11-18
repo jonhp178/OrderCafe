@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OrderCafe.Models.OrderPro>
+@using System.Linq
+@using System.Globalization
+@{
+    ViewBag.Title = "Đơn hàng của tôi";
+    Layout = "~/Views/Shared/_GiaoDien.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/GiaoDien.css" />
+<h2>Đơn hàng của tôi</h2>
+@if (!Model.Any())
+{
+    <p>Bạn chưa có đơn hàng nào.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead><tr><th>Mã đơn</th><th>Ngày đặt</th><th>Trạng thái</th><th>Thanh toán</th><th>Tổng tiền</th><th></th></tr></thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@(order.OrderCode ?? order.OrderId.ToString())</td>
+                    <td>@order.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@(order.Status == "Shipping" ? "Đang chuẩn bị / giao hàng" : order.Status)</td>
+                    <td>@order.PaymentMethod / @order.PaymentStatus</td>
+                    <td>@order.TotalAmount.ToString("N0", CultureInfo.GetCultureInfo("vi-VN"))đ</td>
+                    <td>@Html.ActionLink("Theo dõi đơn", "Details", new { id = order.OrderId }, new { @class = "btn btn-primary btn-sm" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<p>@Html.ActionLink("Tiếp tục mua hàng", "Index", "Product", null, new { @class = "btn btn-default" })</p>

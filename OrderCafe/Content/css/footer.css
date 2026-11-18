@@ -1,0 +1,78 @@
+﻿/* Khung chính của footer. */
+.site-footer {
+    width: 100%;
+    margin:0;
+    padding: 42px max(24px, calc((100% - 1120px) / 2)) 0; /* Căn nội dung và tạo khoảng trống bên trong. */
+    background: #26372d; /* Dùng nền xanh rêu theo chủ đề HAT Coffee. */
+    color: #f6f3eb; /* Dùng chữ màu kem để dễ đọc trên nền tối. */
+}
+
+/* Xếp thông tin thành ba cột. */
+.footer-content {
+    display: grid; /* Dùng lưới để chia các phần thông tin. */
+    grid-template-columns: 1.2fr 1fr 1fr; /* Cột thương hiệu rộng hơn một chút. */
+    gap: 36px; /* Tạo khoảng cách giữa các cột. */
+    padding-bottom: 30px; /* Tách các cột khỏi dòng bản quyền. */
+}
+
+/* Tiêu đề của từng cột. */
+.footer-column h2 {
+    margin: 0 0 14px; /* Bỏ lề trên và tạo khoảng cách dưới tiêu đề. */
+    color: #e6c995; /* Dùng vàng kem để tiêu đề nổi hơn. */
+    font-size: 16px; /* Giữ tiêu đề vừa phải. */
+}
+
+/* Chữ thông tin trong footer. */
+.footer-column p {
+    margin: 0 0 8px; /* Tách nhẹ từng dòng. */
+    color: #e5e0d6; /* Dùng màu kem dịu cho nội dung. */
+    line-height: 1.7; /* Tăng khoảng cách dòng để dễ đọc. */
+}
+
+/* Tên thương hiệu lớn hơn tiêu đề cột. */
+.footer-column .footer-brand {
+    color: #fffdf8; /* Làm tên thương hiệu sáng hơn. */
+    font-size: 22px; /* Tạo điểm nhấn cho HẠT COFFEE. */
+    letter-spacing: 1px; /* Giãn chữ nhẹ để giống logo. */
+}
+
+/* Liên kết email và điện thoại. */
+.footer-column a {
+    color: #e6c995; /* Dùng màu vàng kem cho liên kết. */
+    text-decoration: none; /* Bỏ gạch chân mặc định. */
+}
+
+    /* Báo hiệu liên kết khi rê chuột. */
+    .footer-column a:hover {
+        color: #fffdf8; /* Làm chữ sáng lên khi rê chuột. */
+        text-decoration: underline; /* Gạch chân để cho biết có thể bấm. */
+    }
+
+/* Dòng bản quyền dưới cùng. */
+.footer-bottom {
+    padding: 16px 0; /* Tạo khoảng trống quanh dòng bản quyền. */
+    border-top: 1px solid rgba(255, 255, 255, 0.18); /* Kẻ đường phân cách mảnh. */
+    color: #c9c2b6; /* Làm dòng này dịu hơn phần thông tin chính. */
+    font-size: 13px; /* Để bản quyền nhỏ hơn nội dung các cột. */
+    text-align: center; /* Căn dòng bản quyền ra giữa. */
+}
+
+/* Giữ chữ bên trong footer gọn và căn giữa. */
+.footer-content,
+.footer-bottom {
+    max-width: 1120px; /* Giới hạn chiều rộng phần chữ để không dàn quá xa. */
+    margin-left: auto; /* Căn phần chữ vào giữa theo chiều ngang. */
+    margin-right: auto; /* Căn phần chữ vào giữa theo chiều ngang. */
+}
+
+/* Chuyển footer thành một cột trên màn hình nhỏ. */
+@media (max-width: 700px) {
+    .footer-content {
+        grid-template-columns: 1fr; /* Xếp ba phần thông tin thành các hàng. */
+        gap: 22px; /* Giảm khoảng cách giữa các phần trên điện thoại. */
+    }
+
+    .site-footer {
+        padding-top: 30px; /* Giảm khoảng trống trên điện thoại. */
+    }
+}

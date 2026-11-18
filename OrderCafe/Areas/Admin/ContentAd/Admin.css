@@ -1,0 +1,381 @@
+﻿:root { /* Khai báo màu dùng chung để sau này đổi màu ở một chỗ. */
+    --nen-trang: #f6f3eb; /* Nền kem nhạt theo chủ đề HAT Coffee. */
+    --nen-khoi: #fffdf8; /* Nền sáng cho thẻ và bảng. */
+    --nen-menu: #26372d; /* Nền xanh rêu đậm cho thanh bên. */
+    --chu-chinh: #30291f; /* Màu nâu đậm cho chữ chính. */
+    --chu-phu: #777166; /* Màu chữ phụ để phân biệt với tiêu đề. */
+    --duong-ke: #e7dfd2; /* Màu đường viền nhẹ. */
+    --mau-nhan: #c49a5b; /* Màu vàng nâu dùng làm điểm nhấn. */
+}
+/* Kết thúc danh sách màu. */
+
+.admin-body { /* Chỉ áp dụng các cài đặt này cho trang có class admin-body. */
+    min-height: 100vh; /* Giữ trang cao ít nhất bằng chiều cao màn hình. */
+    margin: 0; /* Bỏ khoảng trắng mặc định quanh trang. */
+    background: var(--nen-trang); /* Dùng màu nền kem đã khai báo ở trên. */
+    color: var(--chu-chinh); /* Dùng màu nâu đậm cho chữ mặc định. */
+    font-family: Arial, sans-serif; /* Chọn phông phổ biến, dễ đọc và ít lỗi hiển thị. */
+}
+/* Kết thúc phần cài đặt trang admin. */
+
+.admin-header { /* Thanh đầu trang chứa logo và thông tin admin. */
+    min-height: 68px; /* Đặt chiều cao tối thiểu để thanh đầu trang không quá thấp. */
+    padding: 12px 28px; /* Tạo khoảng trống bên trong thanh. */
+    display: flex; /* Đặt logo và thông tin admin trên cùng một hàng. */
+    align-items: center; /* Căn giữa các thành phần theo chiều dọc. */
+    justify-content: space-between; /* Đẩy logo sang trái, thông tin sang phải. */
+    background: var(--nen-khoi); /* Dùng nền sáng để phân biệt với phần nội dung. */
+    border-bottom: 1px solid var(--duong-ke); /* Kẻ đường mảnh dưới thanh đầu trang. */
+}
+/* Kết thúc thanh đầu trang. */
+
+.admin-brand { /* Phần chữ logo HẠT COFFEE. */
+    display: flex; /* Xếp tên thương hiệu và dòng chữ nhỏ theo chiều dọc. */
+    flex-direction: column; /* Đưa dòng COFFEE xuống dưới chữ HẠT. */
+    color: #4d3925; /* Dùng màu nâu gần với màu logo. */
+    font-size: 22px; /* Làm chữ HẠT nổi bật hơn chữ phụ. */
+    font-weight: bold; /* Làm logo đậm để dễ nhận diện. */
+    line-height: 1.1; /* Giữ hai dòng gần nhau. */
+    text-decoration: none; /* Bỏ gạch chân vì logo là liên kết. */
+}
+    /* Kết thúc logo. */
+
+    .admin-brand small { /* Dòng COFFEE · ADMIN dưới logo. */
+        margin-top: 4px; /* Tạo khoảng cách nhỏ với chữ HẠT. */
+        font-size: 9px; /* Làm dòng phụ nhỏ hơn tên thương hiệu. */
+        letter-spacing: 2px; /* Giãn chữ để dòng phụ trông thoáng hơn. */
+    }
+/* Kết thúc dòng chữ nhỏ của logo. */
+
+.admin-header-right { /* Nhóm lời chào và liên kết về cửa hàng. */
+    display: flex; /* Đặt hai thành phần cùng hàng. */
+    align-items: center; /* Căn chúng giữa theo chiều dọc. */
+    gap: 20px; /* Tạo khoảng cách giữa lời chào và liên kết. */
+}
+/* Kết thúc nhóm bên phải. */
+
+.admin-shell { /* Khung chia sidebar và phần nội dung. */
+    min-height: calc(100vh - 122px); /* Chừa chỗ cho thanh đầu trang và chân trang. */
+    display: grid; /* Dùng lưới để chia trang thành cột trái và cột phải. */
+    grid-template-columns: 240px minmax(0, 1fr); /* Sidebar rộng 240px, nội dung chiếm chỗ còn lại. */
+}
+/* Kết thúc khung chia cột. */
+
+.admin-sidebar { /* Thanh menu bên trái. */
+    padding: 24px 16px; /* Tạo khoảng trống quanh các mục menu. */
+    background: var(--nen-menu); /* Dùng xanh rêu đậm để sidebar nổi bật. */
+    color: var(--nen-khoi); /* Chữ trong sidebar có màu sáng. */
+}
+/* Kết thúc sidebar. */
+
+.sidebar-nav { /* Danh sách các liên kết quản trị. */
+    display: grid; /* Xếp mỗi liên kết thành một hàng. */
+    gap: 6px; /* Tạo khoảng cách giữa các hàng menu. */
+}
+    /* Kết thúc danh sách menu. */
+
+    .sidebar-nav a { /* Một liên kết trong sidebar. */
+        display: flex; /* Đặt biểu tượng và chữ trên cùng một hàng. */
+        align-items: center; /* Căn biểu tượng và chữ cho thẳng hàng. */
+        gap: 12px; /* Tạo khoảng cách giữa biểu tượng và chữ. */
+        padding: 12px; /* Tạo vùng bấm rộng hơn, dễ chọn bằng chuột. */
+        border-radius: 8px; /* Bo nhẹ góc mục menu. */
+        color: var(--nen-khoi); /* Giữ chữ sáng để dễ đọc trên nền tối. */
+        text-decoration: none; /* Bỏ gạch chân của liên kết. */
+    }
+        /* Kết thúc kiểu liên kết menu. */
+
+        .sidebar-nav a:hover { /* Khi rê chuột lên một mục menu. */
+            background: #344a3a; /* Làm nền sáng hơn một chút để báo mục đang được chọn. */
+        }
+/* Kết thúc hiệu ứng rê chuột. */
+
+.admin-content { /* Vùng hiển thị nội dung của từng trang admin. */
+    min-width: 0; /* Cho phép vùng này co lại mà không làm tràn cả bố cục. */
+    padding: 30px; /* Tạo khoảng cách giữa nội dung và mép vùng. */
+}
+/* Kết thúc vùng nội dung. */
+
+.summary-grid { /* Khung chứa các thẻ số liệu tổng quan. */
+    display: grid; /* Xếp thẻ theo dạng lưới. */
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* Chia thành 4 cột bằng nhau trên màn hình rộng. */
+    gap: 16px; /* Tạo khoảng cách giữa các thẻ. */
+    margin-bottom: 24px; /* Tách thẻ số liệu khỏi bảng bên dưới. */
+}
+/* Kết thúc lưới thẻ số liệu. */
+
+.summary-card { /* Một thẻ số liệu. */
+    display: grid; /* Xếp tên, số liệu và liên kết thành các dòng. */
+    gap: 10px; /* Tạo khoảng cách giữa các dòng trong thẻ. */
+    padding: 20px; /* Tạo khoảng trống bên trong thẻ. */
+    border: 1px solid var(--duong-ke); /* Viền nhẹ để nhận ra ranh giới thẻ. */
+    border-radius: 12px; /* Bo góc thẻ. */
+    background: var(--nen-khoi); /* Dùng nền sáng cho dễ đọc. */
+    color: var(--chu-chinh); /* Dùng màu chữ chính. */
+    text-decoration: none; /* Bỏ gạch chân vì toàn bộ thẻ là liên kết. */
+}
+    /* Kết thúc thẻ số liệu. */
+
+    .summary-card:hover { /* Khi rê chuột lên một thẻ số liệu. */
+        border-color: var(--mau-nhan); /* Đổi viền sang vàng nâu để báo thẻ có thể bấm. */
+    }
+    /* Kết thúc hiệu ứng thẻ. */
+
+    .summary-card strong { /* Con số lớn trong thẻ. */
+        font-size: 30px; /* Làm số liệu nổi bật hơn phần mô tả. */
+    }
+/* Kết thúc kiểu số liệu. */
+
+.panel { /* Khung bao quanh bảng đơn hàng. */
+    overflow: hidden; /* Giữ nội dung bên trong theo góc bo của khung. */
+    border: 1px solid var(--duong-ke); /* Vẽ viền nhẹ quanh bảng. */
+    border-radius: 12px; /* Bo góc khung bảng. */
+    background: var(--nen-khoi); /* Dùng nền sáng cho bảng. */
+}
+/* Kết thúc khung bảng. */
+
+.table-scroll { /* Khung giúp bảng cuộn ngang khi màn hình nhỏ. */
+    overflow-x: auto; /* Chỉ hiện thanh cuộn ngang khi bảng không vừa màn hình. */
+}
+/* Kết thúc khung cuộn bảng. */
+
+.admin-table { /* Bảng dùng trong trang admin. */
+    width: 100%; /* Cho bảng rộng hết vùng chứa. */
+    border-collapse: collapse; /* Gộp các đường viền ô thành đường đơn. */
+    background: var(--nen-khoi); /* Dùng nền sáng cho các dòng dữ liệu. */
+}
+    /* Kết thúc bảng. */
+
+    .admin-table th,
+    .admin-table td { /* Áp dụng chung cho tiêu đề cột và ô dữ liệu. */
+        padding: 13px 16px; /* Tạo khoảng cách để chữ không sát viền ô. */
+        border-bottom: 1px solid var(--duong-ke); /* Kẻ đường phân cách giữa các dòng. */
+        text-align: left; /* Căn nội dung về bên trái để dễ đọc. */
+        white-space: nowrap; /* Tránh chữ tự xuống dòng làm hàng quá cao. */
+    }
+    /* Kết thúc kiểu ô bảng. */
+
+    .admin-table th { /* Chỉ áp dụng cho hàng tiêu đề bảng. */
+        background: #f4efe5; /* Dùng nền kem đậm hơn để phân biệt tiêu đề. */
+        color: #4d3925; /* Dùng chữ nâu cho hợp màu thương hiệu. */
+    }
+/* Kết thúc hàng tiêu đề. */
+
+.admin-footer { /* Chân trang admin. */
+    padding: 16px 28px; /* Tạo khoảng trống quanh dòng chân trang. */
+    border-top: 1px solid var(--duong-ke); /* Kẻ đường phân cách với phần nội dung. */
+    color: var(--chu-phu); /* Dùng màu chữ phụ để chân trang không lấn át nội dung. */
+}
+/* Kết thúc chân trang. */
+
+/* Giữ vùng nút gọn trên cùng một hàng */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* Đặt giới hạn chiều rộng cho phần mô tả */
+.admin-table .description {
+    min-width: 180px;
+    white-space: normal;
+}
+
+/* Làm hàng bảng dễ đọc hơn khi rê chuột */
+.admin-table tbody tr:hover {
+    background: #f4efe5;
+}
+
+/* Giới hạn chiều rộng form và tạo khung nền sáng */
+.form-horizontal {
+    max-width: 760px;
+    padding: 24px;
+    border: 1px solid var(--duong-ke);
+    border-radius: 12px;
+    background: var(--nen-khoi);
+}
+
+/* Xếp thông tin thành hai cột */
+.product-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+    /* Mỗi mục thông tin là một thẻ nhỏ */
+    .product-details div {
+        padding: 16px;
+        border: 1px solid var(--duong-ke);
+        border-radius: 10px;
+        background: var(--nen-khoi);
+    }
+
+/* Chuyển về một cột trên màn hình hẹp */
+@media (max-width: 620px) {
+    .product-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) { /* Quy tắc dùng khi màn hình nhỏ hơn 900px. */
+    .summary-grid { /* Điều chỉnh lưới thẻ số liệu. */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* Chuyển từ 4 cột xuống 2 cột. */
+    }
+    /* Kết thúc chỉnh lưới thẻ. */
+}
+/* Kết thúc nhóm màn hình dưới 900px. */
+
+@media (max-width: 620px) { /* Quy tắc dùng trên điện thoại. */
+    .admin-shell { /* Điều chỉnh khung sidebar và nội dung. */
+        grid-template-columns: 1fr; /* Chuyển sidebar lên trên nội dung. */
+    }
+    /* Kết thúc chỉnh khung. */
+
+    .summary-grid { /* Điều chỉnh các thẻ số liệu trên điện thoại. */
+        grid-template-columns: 1fr; /* Xếp mỗi thẻ thành một hàng riêng. */
+    }
+    /* Kết thúc chỉnh thẻ. */
+
+    .admin-content { /* Giảm khoảng cách nội dung ở màn hình hẹp. */
+        padding: 16px; /* Giúp nội dung có thêm chỗ trên điện thoại. */
+    }
+    /* Kết thúc chỉnh vùng nội dung. */
+}
+/* Kết thúc nhóm màn hình điện thoại. */
+
+
+/*=============================================================================================================*/
+/*thêm phần giao diện của index*/
+/* Căn tiêu đề và nút thêm tài khoản trên cùng một hàng. */
+.account-page-heading {
+    display: flex; /* Đặt phần tiêu đề và nút cạnh nhau. */
+    align-items: center; /* Căn giữa chúng theo chiều dọc. */
+    justify-content: space-between; /* Đẩy nút sang bên phải. */
+    gap: 20px; /* Giữ khoảng cách nếu màn hình hẹp. */
+    margin-bottom: 24px; /* Tách phần đầu trang khỏi bảng. */
+}
+
+/* Dòng nhãn nhỏ phía trên tiêu đề. */
+.account-eyebrow {
+    margin: 0 0 6px; /* Tạo khoảng cách nhỏ với tiêu đề. */
+    color: #967344; /* Dùng màu vàng nâu theo chủ đề quán. */
+    font-size: 12px; /* Để nhãn nhỏ hơn tiêu đề. */
+    font-weight: bold; /* Làm nhãn dễ nhận ra. */
+    letter-spacing: 1px; /* Giãn chữ nhẹ. */
+}
+
+/* Tiêu đề chính của trang tài khoản. */
+.account-page-heading h1 {
+    margin: 0; /* Bỏ khoảng cách mặc định quanh tiêu đề. */
+    color: var(--chu-chinh); /* Dùng màu chữ chung của admin. */
+    font-size: 30px; /* Làm tiêu đề nổi bật vừa phải. */
+}
+
+/* Dòng mô tả bên dưới tiêu đề. */
+.account-description {
+    margin: 6px 0 0; /* Tạo khoảng cách nhỏ với tiêu đề. */
+    color: var(--chu-phu); /* Dùng màu chữ phụ. */
+}
+
+/* Nút thêm tài khoản. */
+.account-add-button {
+    display: inline-flex; /* Cho phép căn chữ trong nút. */
+    align-items: center; /* Căn chữ giữa theo chiều dọc. */
+    min-height: 44px; /* Tạo vùng bấm đủ rộng. */
+    padding: 0 16px; /* Tạo khoảng trống hai bên chữ. */
+    border-radius: 8px; /* Bo góc nhẹ. */
+    background: var(--nen-menu); /* Dùng xanh rêu giống sidebar admin. */
+    color: #fffdf8; /* Chữ sáng trên nền xanh. */
+    font-weight: bold; /* Làm chữ nút rõ hơn. */
+    text-decoration: none; /* Bỏ gạch chân của liên kết. */
+}
+
+    /* Đổi màu nút thêm khi rê chuột. */
+    .account-add-button:hover {
+        background: #365b43; /* Làm nền xanh sáng hơn khi rê chuột. */
+        color: #fffdf8; /* Giữ chữ sáng. */
+    }
+
+/* Giữ bảng gọn và các cột dễ đọc. */
+.account-table {
+    min-width: 900px; /* Cho bảng đủ chỗ để không ép chữ quá hẹp. */
+}
+
+    /* Tô nền nhẹ cho các dòng chẵn. */
+    .account-table tbody tr:nth-child(even) {
+        background: #faf6ef; /* Phân biệt các dòng mà không dùng màu quá đậm. */
+    }
+
+    /* Hiện nền sáng khi rê chuột lên dòng. */
+    .account-table tbody tr:hover {
+        background: #f3ead9; /* Làm nổi dòng đang xem. */
+    }
+
+/* Nhãn trạng thái tài khoản. */
+.account-status {
+    display: inline-block; /* Giúp nhãn có nền và khoảng đệm riêng. */
+    padding: 5px 9px; /* Tạo khoảng trống quanh chữ. */
+    border-radius: 20px; /* Bo nhãn thành dạng viên thuốc. */
+    font-size: 12px; /* Dùng chữ nhỏ gọn. */
+    font-weight: bold; /* Làm trạng thái dễ đọc. */
+}
+
+/* Trạng thái tài khoản đang hoạt động. */
+.status-active {
+    background: #e3f1e6; /* Nền xanh nhạt. */
+    color: #28633a; /* Chữ xanh đậm. */
+}
+
+/* Trạng thái tài khoản đã khóa. */
+.status-locked {
+    background: #f5e3df; /* Nền đỏ nhạt. */
+    color: #934332; /* Chữ đỏ nâu. */
+}
+
+/* Xếp các nút thao tác trên cùng một hàng. */
+.action-buttons {
+    display: flex; /* Đặt các nút cạnh nhau. */
+    align-items: center; /* Căn nút giữa theo chiều dọc. */
+    gap: 7px; /* Tạo khoảng cách giữa các nút. */
+    white-space: nowrap; /* Tránh chữ trong nút tự xuống dòng. */
+}
+
+/* Kiểu chung của các nút thao tác. */
+.account-action {
+    display: inline-block; /* Cho phép chỉnh khoảng đệm cho liên kết. */
+    padding: 7px 10px; /* Tạo vùng bấm vừa phải. */
+    border-radius: 7px; /* Bo góc nút. */
+    color: #fff; /* Dùng chữ sáng trên nền nút. */
+    font-size: 13px; /* Giữ nút gọn. */
+    text-decoration: none; /* Bỏ gạch chân liên kết. */
+}
+
+/* Nút sửa dùng màu xanh rêu. */
+.action-edit {
+    background: #365b43; /* Nền xanh rêu. */
+}
+
+/* Nút chi tiết dùng màu vàng nâu. */
+.action-details {
+    background: #a46f20; /* Nền vàng nâu. */
+}
+
+/* Nút xóa dùng màu đỏ trầm để dễ nhận biết. */
+.action-delete {
+    background: #9b4b2f; /* Nền đỏ nâu. */
+}
+
+/* Làm các nút đậm hơn khi rê chuột. */
+.account-action:hover {
+    filter: brightness(0.9); /* Giảm độ sáng nhẹ để báo nút đang được rê chuột. */
+    color: #fff; /* Giữ chữ sáng. */
+}
+
+/* Trên màn hình nhỏ, xếp nút thêm xuống dưới tiêu đề. */
+@media (max-width: 700px) {
+    .account-page-heading {
+        align-items: flex-start; /* Căn các phần về phía trên. */
+        flex-direction: column; /* Xếp tiêu đề và nút thành hai hàng. */
+    }
+}

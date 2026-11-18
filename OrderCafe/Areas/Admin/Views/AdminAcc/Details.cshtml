@@ -10,7 +10,7 @@
 <div>
     <h4>AdminUser</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="product-details">
         <dt>
             @Html.DisplayNameFor(model => model.Username)
         </dt>
@@ -25,14 +25,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.FullName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
         </dd>
 
         <dt>
@@ -74,10 +66,17 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AdminId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdminId }, new { @class = "btn btn-success", style = "margin: 5px;" }) |
+    @Html.ActionLink("Back to List", "Index", null, new {@class= "btn btn-primary", style = "margin: 5px;" })
 </p>

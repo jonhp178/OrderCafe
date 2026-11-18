@@ -1,0 +1,71 @@
+﻿@model OrderCafe.Controllers.OrderCheckoutViewModel
+@using System.Linq
+@using System.Collections.Generic
+@using System.Globalization
+@using OrderCafe.Models
+@{
+    ViewBag.Title = "Đặt hàng";
+    Layout = "~/Views/Shared/_GiaoDien.cshtml";
+    var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+}
+
+<h2>Thông tin nhận hàng</h2>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
+<link rel="stylesheet" href="~/Content/GiaoDien.css" />
+@Html.ValidationSummary(true, "Vui lòng kiểm tra lại thông tin.", new { @class = "text-danger" })
+
+<div class="row" style="margin: 10px">
+    <div class="col-md-7">
+        @using (Html.BeginForm("Checkout", "Order", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReceiverName, "Tên người nhận")
+                @Html.TextBoxFor(model => model.ReceiverName, new { @class = "form-control", maxlength = "100" })
+                @Html.ValidationMessageFor(model => model.ReceiverName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReceiverPhone, "Số điện thoại")
+                @Html.TextBoxFor(model => model.ReceiverPhone, new { @class = "form-control", maxlength = "10" })
+                @Html.ValidationMessageFor(model => model.ReceiverPhone, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShippingAddress, "Địa chỉ giao hàng")
+                @Html.TextAreaFor(model => model.ShippingAddress, new { @class = "form-control", rows = "3", maxlength = "255" })
+                @Html.ValidationMessageFor(model => model.ShippingAddress, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Note, "Ghi chú")
+                @Html.TextAreaFor(model => model.Note, new { @class = "form-control", rows = "2", maxlength = "255" })
+                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>Phương thức thanh toán</label><br />
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.PaymentMethod, "COD") Thanh toán khi nhận hàng (COD)
+                </label> 
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.PaymentMethod, "VNPAY") Thanh toán VNPay Sandbox
+                </label>
+                @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
+                <p class="help-block">Đơn sẽ chờ admin xác nhận.</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Đặt hàng</button>
+            @Html.ActionLink("Quay lại giỏ hàng", "Index", "Cart", null, new { @class = "btn btn-default" })
+        }
+    </div>
+
+    <div class="col-md-5">
+        <h3>Đơn hàng</h3>
+        <ul class="list-group">
+            @foreach (var item in cart)
+            {
+                <li class="list-group-item">
+                    @item.ProductName x @item.Quantity
+                    <span class="pull-right">@item.TotalPrice.ToString("N0", CultureInfo.GetCultureInfo("vi-VN"))đ</span>
+                </li>
+            }
+        </ul>
+        <p><strong>Tạm tính: @cart.Sum(item => item.TotalPrice).ToString("N0", CultureInfo.GetCultureInfo("vi-VN"))đ</strong></p>
+    </div>
+</div>

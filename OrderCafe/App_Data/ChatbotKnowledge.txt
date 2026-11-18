@@ -1,0 +1,20 @@
+TRANG CHỦ | home | giới thiệu quán giờ mở cửa địa chỉ hotline
+Hạt Coffee là quán cà phê rang xay ở Quận 10, TP. Hồ Chí Minh. Trang chủ có phần giới thiệu quán, giờ hoạt động, địa chỉ và số điện thoại đang hiển thị trên website. Thứ 2 đến thứ 6 mở cửa 07:00–22:00; thứ 7 và chủ nhật mở cửa 07:00–23:00. Địa chỉ hiển thị: 828 Sư Vạn Hạnh, Quận 10, TP. Hồ Chí Minh. Hotline hiển thị trên website: 123456789.
+---
+MENU VÀ CHI TIẾT MÓN | menu sản phẩm danh mục giá đồ uống
+Chọn Menu trên thanh điều hướng để xem sản phẩm và lọc theo danh mục. Giá, mô tả, danh mục và tình trạng bán của từng món được lấy trực tiếp từ database. Mở chi tiết món từ danh sách để xem thêm thông tin. Chỉ món đang bán mới có thể thêm vào giỏ.
+---
+GIỎ HÀNG | giỏ hàng thêm món cập nhật số lượng xóa món
+Tại trang Menu, bấm thêm món vào giỏ. Trong trang Giỏ hàng, khách có thể đổi số lượng từ 1 đến 99 cho mỗi món hoặc xóa món. Giá được kiểm tra lại từ database khi đặt hàng.
+---
+ĐĂNG KÝ VÀ ĐĂNG NHẬP | tài khoản đăng ký login đăng xuất
+Chọn Đăng nhập trên thanh điều hướng để đăng nhập; khách chưa có tài khoản có thể mở chức năng đăng ký. Khi đã đăng nhập, khách có thể xem Đơn hàng của tôi và thực hiện thanh toán/đặt hàng. Không yêu cầu khách gửi mật khẩu hoặc mã xác thực vào chatbot.
+---
+ĐẶT HÀNG VÀ THANH TOÁN | checkout COD VNPay sandbox đặt đơn
+Để đặt hàng, thêm món vào giỏ, đăng nhập và tiếp tục đến trang thông tin nhận hàng. Điền tên người nhận, số điện thoại, địa chỉ giao hàng và ghi chú nếu cần. Website hiện hỗ trợ COD (thanh toán khi nhận hàng) và VNPay Sandbox. Đơn mới ở trạng thái chờ admin xác nhận; với VNPay, cần thanh toán trước khi đơn có thể được xác nhận. Không cung cấp thông tin thẻ hoặc dữ liệu thanh toán trong chatbot.
+---
+THEO DÕI ĐƠN | đơn hàng của tôi trạng thái chi tiết đơn hàng
+Khách đăng nhập chọn Đơn hàng của tôi để xem danh sách đơn và mở từng đơn để xem trạng thái, món đã đặt và tình trạng thanh toán. Chatbot công khai không tra cứu đơn hàng cá nhân; khách cần đăng nhập trên website để xem thông tin này.
+---
+THÔNG TIN QUÁN | về quán nguyên liệu thành phần dị ứng giờ mở cửa
+Trang Thông tin giới thiệu câu chuyện Hạt Coffee, định hướng về cà phê, trà và trái cây, sữa và thành phần pha chế, cùng chủ trương chất lượng, lắng nghe khách hàng và hạn chế lãng phí. Nếu khách dị ứng thực phẩm hoặc cần xác nhận thành phần cụ thể, hãy trao đổi trực tiếp với nhân viên trước khi đặt món; chatbot không suy đoán thành phần khi database không ghi rõ.

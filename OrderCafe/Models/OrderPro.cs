@@ -23,7 +23,7 @@ namespace OrderCafe.Models
     
         public int OrderId { get; set; }
         public System.DateTime OrderDate { get; set; }
-        public string ReceiverName { get; set; }
+        public string ReceiverName { get; set; } 
         public string ReceiverPhone { get; set; }
         public string ShippingAddress { get; set; }
         public string Note { get; set; }

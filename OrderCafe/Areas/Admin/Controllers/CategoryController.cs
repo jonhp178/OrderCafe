@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -36,6 +37,20 @@ namespace OrderCafe.Areas.Admin.Controllers
             {
                 return Content("loi tao category");
             }
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
         }
 
         [HttpGet]

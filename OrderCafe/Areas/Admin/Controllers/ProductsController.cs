@@ -43,7 +43,7 @@ namespace OrderCafe.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var product = db.Products.Where(c => c.CategoryId == id).FirstOrDefault();
+            var product = db.Products.Where(c => c.ProductId == id).FirstOrDefault();
             return View(product);
         }
 

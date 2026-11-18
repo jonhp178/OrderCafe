@@ -1,63 +1,196 @@
-﻿/* ==========================================================
-   menu.css - TRANG MENU (sidebar thể loại + lưới sản phẩm)
-   Chỉ nạp ở _MasterLayout.cshtml.
-   ========================================================== */
-
-/* ----- Bố cục chính: sidebar trái, nội dung phải ----- */
-.menu-layout {
-    display: grid; /* Dùng lưới CSS */
-    grid-template-columns: 260px 1fr; /* Sidebar rộng 260px, phần còn lại cho nội dung */
-    gap: 32px; /* Khoảng cách giữa sidebar và nội dung */
-    padding: 32px 0; /* Đệm trên/dưới */
+/* Tạo khoảng cách quanh khu vực menu. */
+.category-sidebar,
+.menu-content {
+    padding-top: 28px; /* Tách nội dung khỏi thanh đầu trang. */
+    padding-bottom: 36px; /* Tạo khoảng cách trước footer. */
 }
 
-    /* ----- Sidebar: danh mục thể loại ----- */
-    .menu-layout aside a {
-        display: block; /* Mỗi thể loại chiếm một dòng */
-        padding: 10px 14px; /* Đệm trong */
-        margin-bottom: 8px; /* Khoảng cách giữa các mục */
-        background: #fffdf8; /* Nền kem sáng */
-        border: 1px solid #e4dacb; /* Viền mảnh */
-        border-radius: 6px; /* Bo góc */
-        color: #30291f; /* Chữ nâu đậm */
-        text-decoration: none; /* Bỏ gạch chân */
-        transition: background .2s ease; /* Đổi nền mượt */
+/* Làm tiêu đề danh mục rõ hơn. */
+.category-title {
+    margin: 0 0 16px; /* Tách tiêu đề khỏi danh sách thể loại. */
+    color: #294734; /* Dùng xanh rêu theo chủ đề HAT Coffee. */
+    font-size: 24px; /* Đặt cỡ chữ vừa phải. */
+}
+
+/* Làm hộp danh mục có góc bo và viền nhẹ. */
+.category-sidebar .list-group {
+    overflow: hidden; /* Giữ các mục bên trong theo góc bo của hộp. */
+    border: 1px solid #e7dfd2; /* Tạo viền màu kem nâu. */
+    border-radius: 12px; /* Bo góc toàn bộ danh sách. */
+    background: #fffdf8; /* Dùng nền kem sáng. */
+}
+
+/* Định dạng từng mục thể loại. */
+.category-sidebar .list-group-item {
+    padding: 13px 16px; /* Tạo vùng bấm rộng và dễ chọn. */
+    border-color: #e7dfd2; /* Dùng đường chia màu nhẹ. */
+    background: #fffdf8; /* Giữ nền đồng nhất với hộp danh mục. */
+    color: #30291f; /* Dùng chữ nâu đậm. */
+    text-decoration: none; /* Bỏ gạch chân mặc định. */
+}
+
+    /* Đổi nền mục danh mục khi rê chuột. */
+    .category-sidebar .list-group-item:hover {
+        background: #f3ead9; /* Dùng nền vàng kem nhạt khi rê chuột. */
+        color: #294734; /* Đổi chữ sang xanh rêu. */
     }
 
-        .menu-layout aside a:hover {
-            background: #e6c37f; /* Rê chuột vào thì nền vàng nhạt */
+/* Làm số lượng sản phẩm thành nhãn nhỏ. */
+.category-sidebar .badge {
+    float: right; /* Đưa số lượng về phía bên phải. */
+    border-radius: 20px; /* Bo nhãn thành dạng viên thuốc. */
+    background: #365b43; /* Dùng nền xanh rêu. */
+    color: #fffdf8; /* Dùng chữ sáng trên nền xanh. */
+}
+
+/* Tạo khoảng cách giữa các thẻ sản phẩm. */
+.menu-content .row {
+    row-gap: 24px; /* Tạo khoảng cách dọc giữa các hàng sản phẩm. */
+}
+
+/* Tạo nền và khung cho mỗi thẻ sản phẩm. */
+.product-card {
+    height: 100%; /* Giúp các thẻ trong cùng hàng cao đều nhau. */
+    overflow: hidden; /* Giữ ảnh và nội dung trong góc bo của thẻ. */
+    border: 1px solid #e7dfd2; /* Tạo viền kem nâu nhạt. */
+    border-radius: 14px; /* Bo góc thẻ. */
+    background: #fffdf8; /* Dùng nền sáng cho sản phẩm. */
+    box-shadow: 0 8px 22px rgba(48, 41, 31, 0.07); /* Thêm bóng nhẹ để thẻ tách khỏi nền. */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Làm hiệu ứng rê chuột mượt. */
+}
+
+    /* Nâng thẻ lên nhẹ khi rê chuột. */
+    .product-card:hover {
+        transform: translateY(-4px); /* Dịch thẻ lên một chút. */
+        box-shadow: 0 14px 28px rgba(48, 41, 31, 0.13); /* Tăng bóng để tạo cảm giác thẻ nổi lên. */
+    }
+
+    /* Làm ảnh phủ đều phần đầu thẻ. */
+    .product-card img.product-image {
+        display: block; /* Bỏ khoảng hở nhỏ dưới ảnh. */
+        width: 100%; /* Cho ảnh rộng hết thẻ. */
+        height: 220px; /* Đặt chiều cao ảnh đồng nhất giữa các món. */
+        max-width: 100%; /* Không cho ảnh tràn ra ngoài thẻ. */
+        border-radius: 0; /* Để ảnh khớp với mép trong của thẻ. */
+        object-fit: cover; /* Cắt ảnh vừa khung mà không kéo méo. */
+    }
+
+/* Tạo khoảng cách cho tên, thể loại và giá. */
+.product-info {
+    padding: 16px; /* Tạo khoảng trống quanh nội dung sản phẩm. */
+}
+
+    /* Định dạng tên món. */
+    .product-info h4 {
+        min-height: 48px; /* Giữ phần tên cao đều khi tên món dài ngắn khác nhau. */
+        margin: 0 0 8px; /* Tách tên món khỏi thể loại. */
+        color: #294734; /* Dùng xanh rêu cho tên món. */
+        font-size: 20px; /* Làm tên món nổi bật. */
+    }
+
+    /* Định dạng dòng thể loại. */
+    .product-info p {
+        margin-bottom: 12px; /* Tạo khoảng cách giữa các thông tin. */
+        color: #777166; /* Dùng màu dịu hơn cho nội dung phụ. */
+    }
+
+        /* Làm giá sản phẩm nổi bật. */
+        .product-info p strong {
+            color: #8b6535; /* Dùng màu vàng nâu cho giá. */
+            font-size: 18px; /* Tăng nhẹ cỡ chữ giá. */
         }
 
-/* ----- Lưới sản phẩm ----- */
-.product-grid {
-    display: grid; /* Dùng lưới CSS */
-    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cột đều nhau, không bị nội dung làm giãn */
-    gap: 24px; /* Khoảng cách giữa các thẻ */
+/* Đặt các nút mua gọn trong thẻ. */
+.product-actions form {
+    display: block; /* Để form chiếm chiều ngang thẻ. */
+    margin: 0; /* Bỏ khoảng cách mặc định quanh form. */
 }
 
-/* Thẻ một sản phẩm */
-.product-card {
-    padding: 12px; /* Đệm trong */
-    background: #fffdf8; /* Nền kem sáng */
-    border: 1px solid #e4dacb; /* Viền mảnh */
-    border-radius: 12px; /* Bo góc */
+/* Đổi nút xanh Bootstrap sang xanh rêu của website. */
+.product-actions .btn-primary {
+    width: 100%; /* Cho nút rộng hết phần nội dung thẻ. */
+    padding: 10px; /* Tạo vùng bấm rộng hơn. */
+    border-color: #365b43; /* Viền cùng màu nền. */
+    border-radius: 8px; /* Bo góc nút. */
+    background: #365b43; /* Dùng xanh rêu thay màu xanh dương mặc định. */
 }
 
-    /* Ảnh sản phẩm */
-    .product-card img {
-        display: block; /* Bỏ khe hở nhỏ phía dưới ảnh */
-        width: 100%; /* Ảnh rộng bằng thẻ */
-        height: 200px; /* Mọi ảnh cao bằng nhau */
-        object-fit: cover; /* Cắt ảnh cho vừa khung, không bị méo */
+    /* Làm nút đậm hơn khi rê chuột. */
+    .product-actions .btn-primary:hover {
+        border-color: #294734; /* Đổi viền sang xanh đậm. */
+        background: #294734; /* Đổi nền sang xanh đậm. */
     }
 
-/* ----- Điện thoại / tablet nhỏ ----- */
-@media (max-width: 760px) {
-    .menu-layout {
-        grid-template-columns: 1fr; /* Sidebar nằm trên, nội dung nằm dưới */
+
+/* Bỏ khung lớn bao quanh toàn bộ danh sách. */
+.category-list {
+    display: grid; /* Xếp mỗi thể loại thành một hàng riêng. */
+    gap: 9px; /* Tạo khoảng cách giữa các nút. */
+}
+
+/* Tạo kiểu cho một nút danh mục. */
+.category-link {
+    display: flex; /* Đặt tên thể loại và số lượng trên cùng một hàng. */
+    align-items: center; /* Căn tên và số lượng giữa theo chiều dọc. */
+    justify-content: space-between; /* Đẩy số lượng về bên phải. */
+    gap: 12px; /* Giữ khoảng cách nếu tên thể loại dài. */
+    padding: 12px 14px; /* Tạo vùng bấm thoải mái. */
+    border: 1px solid #e7dfd2; /* Thêm viền kem nâu nhạt. */
+    border-radius: 7px; /* Bo góc từng nút. */
+    background: #fffdf8; /* Dùng nền kem sáng. */
+    color: #30291f; /* Dùng chữ nâu đậm. */
+    text-decoration: none; /* Bỏ gạch chân mặc định. */
+    transition: background 0.2s, border-color 0.2s, transform 0.2s; /* Làm hiệu ứng rê chuột mượt. */
+}
+
+    /* Thêm chấm màu trước tên thể loại. */
+    .category-link > span:first-child::before {
+        content: "•"; /* Hiện một chấm tròn làm dấu đầu dòng. */
+        margin-right: 10px; /* Tách chấm khỏi tên thể loại. */
+        color: #c49a5b; /* Dùng màu vàng nâu theo chủ đề quán. */
     }
 
-    .product-grid {
-        grid-template-columns: 1fr; /* Mỗi hàng một sản phẩm */
+    /* Làm nút sáng và nhích nhẹ khi rê chuột. */
+    .category-link:hover {
+        transform: translateX(3px); /* Dịch nút sang phải một chút. */
+        border-color: #c49a5b; /* Đổi viền sang màu vàng nâu. */
+        background: #f5eddf; /* Đổi nền sang kem đậm hơn. */
+        color: #294734; /* Đổi chữ sang xanh rêu. */
+    }
+
+    /* Đánh dấu thể loại hiện đang được chọn. */
+    .category-link.is-active {
+        border-color: #365b43; /* Dùng viền xanh rêu để nhận biết lựa chọn. */
+        background: #365b43; /* Tô nền xanh rêu cho nút đang chọn. */
+        color: #fffdf8; /* Đổi chữ sang màu sáng để dễ đọc. */
+        font-weight: bold; /* Làm tên thể loại được chọn nổi bật hơn. */
+    }
+
+        /* Đổi chấm sang vàng sáng trên nền xanh. */
+        .category-link.is-active > span:first-child::before {
+            color: #e6c995; /* Giữ chấm nổi trên nút đang chọn. */
+        }
+
+/* Tạo nhãn nhỏ cho số lượng sản phẩm. */
+.category-count {
+    min-width: 28px; /* Giữ nhãn đủ rộng kể cả số lượng nhỏ. */
+    padding: 3px 8px; /* Tạo khoảng trống quanh con số. */
+    border-radius: 20px; /* Bo nhãn thành hình viên thuốc. */
+    background: #f1eadf; /* Dùng nền kem đậm hơn nút thường. */
+    color: #4d3925; /* Dùng chữ nâu cho số lượng. */
+    font-size: 13px; /* Làm số lượng nhỏ hơn tên danh mục. */
+    text-align: center; /* Căn con số vào giữa nhãn. */
+}
+
+/* Đổi màu nhãn số lượng trên nút đang chọn. */
+.category-link.is-active .category-count {
+    background: #fffdf8; /* Dùng nền sáng để nhãn nổi trên nền xanh. */
+    color: #294734; /* Dùng chữ xanh rêu. */
+}
+
+/* Trên điện thoại, giảm chiều cao ảnh để dành chỗ cho nội dung. */
+@media (max-width: 600px) {
+    .product-card img.product-image {
+        height: 190px; /* Giảm ảnh trên màn hình nhỏ. */
     }
 }

@@ -1,14 +1,55 @@
 ﻿@model IEnumerable<OrderCafe.Models.Category>
 
+@{
+    // Đọc mã thể loại đang nằm trên địa chỉ trang, nếu người dùng đã chọn một thể loại.
+    var selectedCategory = Request.QueryString["maTL"];
 
-<div class="list-group">
-    <!-- Link chọn tất cả thể loại (hiển thị toàn bộ sách) -->
-    @Html.ActionLink("Tất cả thể loại", "Index", "Product", null, new { @class = "list-group-item" })
+    // Nếu chưa có mã thể loại thì người dùng đang xem tất cả sản phẩm.
+    var allSelected = string.IsNullOrEmpty(selectedCategory);
+}
 
+<nav class="category-list" aria-label="Danh mục sản phẩm">
+
+    @* Nút xem toàn bộ sản phẩm. *@
+    @Html.ActionLink(
+            "Tất cả thể loại",
+            "Index",
+            "Product",
+            null,
+            new { @class = allSelected ? "category-link is-active" : "category-link" })
+
+    @* Tạo một nút cho mỗi thể loại trong cơ sở dữ liệu. *@
     @foreach (var item in Model)
     {
-        @Html.ActionLink(item.CategoryName, "Index", "Product", new {maTL = item.CategoryId}, new { @class = "list-group-item"})
-        <!-- Hiển thị số lượng sách mỗi thể loại bằng badge -->
-        <span class="badge">@item.Products.Count</span>
+        // Kiểm tra thể loại này có đang được chọn không.
+        var isSelected = selectedCategory == item.CategoryId.ToString();
+
+        <a class="category-link @(isSelected ? "is-active" : "")"
+           href="@Url.Action("Index", "Product", new { maTL = item.CategoryId })">
+
+            @* Tên thể loại. *@
+            <span>@item.CategoryName</span>
+
+            @* Số lượng sản phẩm trong thể loại. *@
+            <span class="category-count">@item.Products.Count</span>
+        </a>
     }
-</div>
+</nav>
+
+@*<div class="list-group">
+        @Html.ActionLink(
+            "Tất cả thể loại",
+            "Index",
+            "Product",
+            null,
+            new { @class = "list-group-item" })
+
+        @foreach (var item in Model)
+        {
+            <a class="list-group-item"
+               href="@Url.Action("Index", "Product", new { maTL = item.CategoryId })">
+                @item.CategoryName
+                <span class="badge">@item.Products.Count</span>
+            </a>
+        }
+    </div>*@
