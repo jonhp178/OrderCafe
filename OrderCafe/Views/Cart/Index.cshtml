@@ -33,6 +33,7 @@
             <thead class="table-light">
                 <tr>
                     <th>Sản phẩm</th>
+                    <th>hình ảnh</th>
                     <th>Đơn giá</th>
                     <th class="text-center">Số lượng</th>
                     <th>Thành tiền</th>
@@ -45,7 +46,10 @@
                 {
                     <tr>
                         <td class="fw-bold">@item.ProductName</td>
-
+                        <td>
+                            <img src="@Url.Content("~/Content/Images/" + item.ImageUrl)"
+                                 style="width: 200px; height: 200px; border:5px; object-fit: cover;" />
+                        </td>
                         <td>@item.UnitPrice.ToString("N0", CultureInfo.GetCultureInfo("vi-VN")) đ</td>
 
                         <td class="text-center">
